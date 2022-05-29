@@ -14,13 +14,13 @@ func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed():
-		self.on_click()
+		self._place_image()
 		get_node('/root/Level')._check_winning()
 
-func on_click():
+func _place_image():
 	var board = get_node('/root/Level/Board')
+	board.get_node('rules').hide()
 	var whichOneToHandle = self.name[1]
-	print('which one - ', whichOneToHandle)
 	var board_part = board.get_node("b" + whichOneToHandle)
 	if placed_on_board:
 		board_part.hide()
@@ -35,6 +35,7 @@ func on_click():
 			if (zIndex > maxIndex):
 				maxIndex = zIndex
 		board_part.z_index = maxIndex + 1
+		board_part.set_scale(Vector2(0.3, 0.3))
 		self.get_node('Sprite').modulate = Color(1,1,1, 0.5)
 		placed_on_board = true
 		
