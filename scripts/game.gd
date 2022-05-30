@@ -1,11 +1,18 @@
 extends Node
 
-var level = 1
+var level
+var gameEnded = false
 var images = []
 var winningOrder
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# get_node("PopupPanel").popup()
+	print('LEVEL', level)
+	get_node("Win").hide()
+	if !level:
+	  level = 1
+	# images = []
 	if level == 1:
 		images.append(preload("res://assets/arrow.png"))
 		images.append(preload("res://assets/heart.png"))
@@ -26,7 +33,14 @@ func _check_winning():
 		if board.get_node("b" + String(first)).z_index > board.get_node("b" + String(second)).z_index:
 			won = false
 	if won:
-		print('WONNNN')
+		gameEnded = true
+		for n in range (1, len(images) + 1):
+			var node = board.get_node("b" + String(n))
+			node.set_scale(Vector2(0.5, 0.5))
+			node.position.y = node.position.y - 80
+			node.position.x = node.position.x - 70
+			node.set_rotation(0.124)
+		get_node("Win").show()
 
 func _level_setup():
 	var imageParts = get_node('ImageParts')
@@ -45,8 +59,19 @@ func _level_setup():
 		imageParts.get_node("P" + String(n)).queue_free()
 		board.get_node("b" + String(n)).queue_free()
 			
-		
+
+func _on_NextLevel_pressed():
+	print('BUTTON')
+	get_tree().root.level = get_tree().root.level + 1
+	get_tree().reload_current_scene()
+
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_NextLevel_button_down():
+	print('BUTTON')
+	level = level + 1
+	get_tree().reload_current_scene()

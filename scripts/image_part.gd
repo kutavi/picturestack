@@ -13,7 +13,8 @@ func _ready():
 func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
-	and event.is_pressed():
+	and event.is_pressed() \
+	and !get_node('/root/Level').gameEnded:
 		self._place_image()
 		get_node('/root/Level')._check_winning()
 
