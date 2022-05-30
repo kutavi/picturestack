@@ -14,6 +14,10 @@ config/name="picturestack"
 run/main_scene="res://level.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://scripts/global.gd"
+
 [display]
 
 window/size/height=768

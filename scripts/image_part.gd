@@ -36,7 +36,7 @@ func _place_image():
 			if (zIndex > maxIndex):
 				maxIndex = zIndex
 		board_part.z_index = maxIndex + 1
-		board_part.set_scale(Vector2(0.3, 0.3))
+		board_part.set_scale(Vector2(0.5, 0.5))
 		self.get_node('Sprite').modulate = Color(1,1,1, 0.5)
 		placed_on_board = true
 		
