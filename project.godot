@@ -21,6 +21,8 @@ Global="*res://scripts/global.gd"
 [display]
 
 window/size/height=768
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [physics]
 
