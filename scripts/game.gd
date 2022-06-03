@@ -1,6 +1,5 @@
 extends Node
 
-var level
 var gameEnded = false
 var images = []
 var winningOrder
@@ -9,7 +8,9 @@ var winningOrder
 func _ready():
 	# get_node("PopupPanel").popup()
 	get_node("Win").hide()
-	level = Global.level
+	if (!Global.level):
+		load_level()
+	var level = Global.level
 	if level == 1:
 		images.append(preload("res://assets/arrow.png"))
 		images.append(preload("res://assets/heart.webp"))
@@ -19,8 +20,16 @@ func _ready():
 		images.append(preload("res://assets/road.png"))
 		images.append(preload("res://assets/house.png"))
 		images.append(preload("res://assets/clouds.png"))
-		images.append(preload("res://assets/fence.png"))
+		images.append(preload("res://assets/fence.webp"))
 		winningOrder = [2, 4, 2, 0]
+	if level == 3:
+		images.append(preload("res://assets/boat.webp"))
+		images.append(preload("res://assets/sea.webp"))
+		images.append(preload("res://assets/sea1.webp"))
+		images.append(preload("res://assets/sun.webp"))
+		images.append(preload("res://assets/shark.webp"))
+		images.append(preload("res://assets/island.webp"))
+		winningOrder = [3, 6, 5, 3, 2, 0]
 	_level_setup()
 		
 
@@ -45,6 +54,7 @@ func _check_winning():
 			node.position.x = node.position.x - 70
 			node.set_rotation(0.124)
 		get_node("Win").show()
+		save_level()
 
 func _level_setup():
 	var imageParts = get_node('ImageParts')
@@ -63,6 +73,28 @@ func _level_setup():
 		imageParts.get_node("P" + String(n)).queue_free()
 		board.get_node("b" + String(n)).queue_free()
 			
+
+func load_level():
+	print("Loading...")
+
+	var save_file = File.new()
+	if not save_file.file_exists("user://savefile.save"):
+		print("Aborting, no savefile")
+		return 1
+
+	save_file.open("user://savefile.save", File.READ)
+	Global.level = int(save_file.get_line())
+	if (!Global.level):
+		Global.level = 1
+	save_file.close()
+
+func save_level():
+	print("Saving...")
+
+	var save_file = File.new()
+	save_file.open("user://savefile.save", File.WRITE)
+	save_file.store_line(String(Global.level + 1))
+	save_file.close()
 
 func _on_NextLevel_pressed():
 	Global.level = Global.level + 1
