@@ -12,7 +12,7 @@ func _ready():
 	level = Global.level
 	if level == 1:
 		images.append(preload("res://assets/arrow.png"))
-		images.append(preload("res://assets/heart.png"))
+		images.append(preload("res://assets/heart.webp"))
 		images.append(preload("res://assets/background_blue.png"))
 		winningOrder = [2, 0, 1] # 1 before 2, 2 doesnt matter, 3 before 1
 	if level == 2:

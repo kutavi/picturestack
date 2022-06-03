@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/tile.webp" type="Texture" id=4]
 [ext_resource path="res://assets/frame.png" type="Texture" id=5]
 [ext_resource path="res://assets/stars.png" type="Texture" id=6]
-[ext_resource path="res://assets/background.webp" type="Texture" id=7]
+[ext_resource path="res://assets/timber-interior-texture.jpg" type="Texture" id=7]
 [ext_resource path="res://assets/board.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=3]
@@ -31,7 +31,7 @@ script = ExtResource( 2 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 523, 381 )
-scale = Vector2( 1.1, 1.1 )
+scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 7 )
 
 [node name="Win" type="Sprite" parent="."]

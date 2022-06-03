@@ -21,14 +21,14 @@ Global="*res://scripts/global.gd"
 [display]
 
 window/size/height=768
+window/dpi/allow_hidpi=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 
 [importer_defaults]
 
 texture={
-"detect_3d": false,
-"flags/filter": false
+"detect_3d": false
 }
 
 [physics]
