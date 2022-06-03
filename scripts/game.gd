@@ -76,11 +76,13 @@ func _level_setup():
 
 func load_level():
 	print("Loading...")
-
+	var dir = Directory.new()
+	dir.remove("user://savegame.save")
 	var save_file = File.new()
 	if not save_file.file_exists("user://savefile.save"):
 		print("Aborting, no savefile")
-		return 1
+		Global.level = 1
+		return
 
 	save_file.open("user://savefile.save", File.READ)
 	Global.level = int(save_file.get_line())
