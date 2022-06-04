@@ -85,7 +85,7 @@ func _load_level():
 		return
 
 	save_file.open(Global.SAVE_FILE, File.READ)
-	Global.level = 1 # int(save_file.get_line())
+	Global.level = int(save_file.get_line())
 	if (!Global.level):
 		Global.level = 1
 	save_file.close()
@@ -100,5 +100,6 @@ func _save_level():
 
 func _on_NextLevel_pressed():
 	Global.level = Global.level + 1
+# warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 

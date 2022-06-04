@@ -266,5 +266,4 @@ texture = ExtResource( 1 )
 position = Vector2( 202, 392 )
 shape = SubResource( 1 )
 
-[connection signal="button_down" from="Win/NextLevel" to="." method="_on_NextLevel_button_down"]
 [connection signal="pressed" from="Win/NextLevel" to="." method="_on_NextLevel_pressed"]
