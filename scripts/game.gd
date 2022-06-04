@@ -15,24 +15,29 @@ func _ready():
 	var level = Global.level
 
 	if level == 1:
-		images.append(preload("res://assets/arrow.png"))
 		images.append(preload("res://assets/heart.webp"))
-		images.append(preload("res://assets/background_blue.png"))
-		winning_order = [2, 0, 1] # 1st asset before 2nd asset, 2 doesnt matter, 3 before 1
+		images.append(preload("res://assets/arrow.png"))
+		winning_order = [null, [1]] # 1st asset doesnt matter, 2nd should be before 1st
 	if level == 2:
-		images.append(preload("res://assets/road.png"))
-		images.append(preload("res://assets/house.png"))
-		images.append(preload("res://assets/clouds.png"))
-		images.append(preload("res://assets/fence.webp"))
-		winning_order = [2, 4, 2, 0]
+		images.append(preload("res://assets/worm.webp"))
+		images.append(preload("res://assets/apple.webp"))
+		images.append(preload("res://assets/leaves.webp"))
+		winning_order = [[2], null, [2]]
 	if level == 3:
+		images.append(preload("res://assets/road.webp"))
+		images.append(preload("res://assets/house.webp"))
+		images.append(preload("res://assets/grass.webp"))
+		images.append(preload("res://assets/sky.webp"))
+		images.append(preload("res://assets/fence.webp"))
+		winning_order = [[2, 5], null, [1], [3], null] # 1st asset before 2nd AND 5th
+	if level == 4:
 		images.append(preload("res://assets/boat.webp"))
 		images.append(preload("res://assets/sea.webp"))
 		images.append(preload("res://assets/sea1.webp"))
 		images.append(preload("res://assets/sun.webp"))
 		images.append(preload("res://assets/shark.webp"))
 		images.append(preload("res://assets/island.webp"))
-		winning_order = [3, 6, 5, 3, 2, 0]
+		winning_order = [[3], [6], [5], [3], [2], null]
 	_level_setup()
 		
 
@@ -44,12 +49,14 @@ func check_winning():
 			return
 	for n in range(0, len(images)):
 		var item_index = n + 1
-		var should_be_after_index = winning_order[n]
-		if should_be_after_index:
-			var item_placement = board.get_node(Global.BOARD_PART + String(item_index)).z_index
-			var item_that_should_be_after = board.get_node(Global.BOARD_PART + String(should_be_after_index)).z_index
-			if item_placement > item_that_should_be_after:
-				won = false
+		var should_be_after_array = winning_order[n]
+		if should_be_after_array:
+			var item_placement = board.get_node(Global.BOARD_PART + str(item_index)).z_index
+			for m in range(0, len(should_be_after_array)):
+				var should_be_after_index = should_be_after_array[m]
+				var item_that_should_be_after = board.get_node(Global.BOARD_PART + str(should_be_after_index)).z_index
+				if item_placement > item_that_should_be_after:
+					won = false
 	if won:
 		game_ended = true
 		# place picture into the winning frame
