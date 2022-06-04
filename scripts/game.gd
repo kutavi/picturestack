@@ -85,7 +85,7 @@ func _load_level():
 		return
 
 	save_file.open(Global.SAVE_FILE, File.READ)
-	Global.level = int(save_file.get_line())
+	Global.level = 1 # int(save_file.get_line())
 	if (!Global.level):
 		Global.level = 1
 	save_file.close()
