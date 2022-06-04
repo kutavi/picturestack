@@ -31,6 +31,14 @@ func _ready():
 		images.append(preload("res://assets/fence.webp"))
 		winning_order = [[2, 5], null, [1], [3], null] # 1st asset before 2nd AND 5th
 	if level == 4:
+		images.append(preload("res://assets/cloud.webp"))
+		images.append(preload("res://assets/pen.webp"))
+		images.append(preload("res://assets/shirt.webp"))
+		images.append(preload("res://assets/unicorn.webp"))
+		images.append(preload("res://assets/pocket.webp"))
+		images.append(preload("res://assets/rainbow.webp"))
+		winning_order = [null, [5], [2, 6], null, null, [1, 4]]
+	if level == 5:
 		images.append(preload("res://assets/boat.webp"))
 		images.append(preload("res://assets/sea.webp"))
 		images.append(preload("res://assets/sea1.webp"))

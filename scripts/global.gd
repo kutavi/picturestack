@@ -1,6 +1,6 @@
 extends Node
 
-var level = 0
+var level = 1
 
 const BOARD_PART = "b"
 const IMAGE_PART = "P"
