@@ -33,5 +33,5 @@ func _place_image():
 				max_index = z_index
 		board_part.z_index = max_index + 1
 		# disable image part
-		image_sprite.modulate = Color(1, 1, 1, 0.5)
+		image_sprite.modulate = Color(1, 1, 1, 0.4)
 		_placed_on_board = true

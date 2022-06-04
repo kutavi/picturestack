@@ -1,5 +1,9 @@
 extends Node
 
+const FRAME_SCALE = Vector2(0.8, 0.8)
+const BOARD_SCALE = Vector2(0.7, 0.7)
+const PART_SCALE = Vector2(0.58, 0.58)
+
 var game_ended = false
 var images = []
 var winning_order
@@ -51,7 +55,7 @@ func check_winning():
 		# place picture into the winning frame
 		for n in range (1, len(images) + 1):
 			var node = board.get_node(Global.BOARD_PART + String(n))
-			node.set_scale(Vector2(0.75, 0.75))
+			node.set_scale(FRAME_SCALE)
 			node.position.y = node.position.y - 80
 			node.position.x = node.position.x - 70
 			node.set_rotation(0.124)
@@ -65,10 +69,11 @@ func _level_setup():
 		var image_part = image_parts.get_node(Global.IMAGE_PART + String(n))
 		var board_part = board.get_node(Global.BOARD_PART + String(n))
 		image_part.get_node(Global.IMAGE_SPRITE).set_texture(images[n - 1])
-		image_part.get_node(Global.IMAGE_SPRITE).set_scale(Vector2(0.35, 0.35))
+		image_part.get_node(Global.IMAGE_SPRITE).set_scale(PART_SCALE)
 		image_part.set_script(load(Global.SCRIPTS_PATH + "image_part.gd"))
 		image_part.set_process_input(true) # we need to enable this since we load the script via code
 		board_part.set_texture(images[n - 1])
+		board_part.set_scale(BOARD_SCALE)
 		board_part.hide()
 	for n in range(len(images) + 1, 9): # clean up the rest unused places
 		image_parts.get_node(Global.IMAGE_PART + String(n)).queue_free()
