@@ -16,7 +16,7 @@ func _ready():
 
 	if level == 1:
 		images.append(preload("res://assets/heart.webp"))
-		images.append(preload("res://assets/arrow.png"))
+		images.append(preload("res://assets/arrow.webp"))
 		winning_order = [null, [1]] # 1st asset doesnt matter, 2nd should be before 1st
 	if level == 2:
 		images.append(preload("res://assets/worm.webp"))

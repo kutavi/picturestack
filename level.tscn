@@ -4,9 +4,9 @@
 [ext_resource path="res://scripts/game.gd" type="Script" id=2]
 [ext_resource path="res://assets/Ubuntu-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/tile.webp" type="Texture" id=4]
-[ext_resource path="res://assets/frame.png" type="Texture" id=5]
+[ext_resource path="res://assets/frame.webp" type="Texture" id=5]
 [ext_resource path="res://assets/stars.webp" type="Texture" id=6]
-[ext_resource path="res://assets/back.jpg" type="Texture" id=7]
+[ext_resource path="res://assets/back.webp" type="Texture" id=7]
 [ext_resource path="res://assets/board.webp" type="Texture" id=8]
 [ext_resource path="res://assets/buttonHover.webp" type="Texture" id=9]
 [ext_resource path="res://assets/button.webp" type="Texture" id=10]
@@ -26,8 +26,8 @@ extents = Vector2( 157.139, 153.846 )
 script = ExtResource( 2 )
 
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 588, 424 )
-scale = Vector2( 0.3, 0.3 )
+position = Vector2( 544, 381 )
+scale = Vector2( 0.66, 0.66 )
 texture = ExtResource( 7 )
 
 [node name="Win" type="Sprite" parent="."]
