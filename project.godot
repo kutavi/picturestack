@@ -12,7 +12,6 @@ config_version=4
 
 config/name="picturestack"
 run/main_scene="res://level.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 

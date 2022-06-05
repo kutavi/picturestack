@@ -22,23 +22,33 @@ func _ready():
 		images.append(preload("res://assets/worm.webp"))
 		images.append(preload("res://assets/apple.webp"))
 		images.append(preload("res://assets/leaves.webp"))
-		winning_order = [[2], null, [2]]
-	if level == 3:
+		images.append(preload("res://assets/plate.webp"))
+		winning_order = [[2], null, [2], [2]]
+	if level == 4:
 		images.append(preload("res://assets/road.webp"))
 		images.append(preload("res://assets/house.webp"))
 		images.append(preload("res://assets/grass.webp"))
 		images.append(preload("res://assets/sky.webp"))
 		images.append(preload("res://assets/fence.webp"))
 		winning_order = [[2, 5], null, [1], [3], null] # 1st asset before 2nd AND 5th
-	if level == 4:
+	if level == 3:
 		images.append(preload("res://assets/cloud.webp"))
 		images.append(preload("res://assets/pen.webp"))
 		images.append(preload("res://assets/shirt.webp"))
 		images.append(preload("res://assets/unicorn.webp"))
 		images.append(preload("res://assets/pocket.webp"))
 		images.append(preload("res://assets/rainbow.webp"))
-		winning_order = [null, [5], [2, 6], null, null, [1, 4]]
+		images.append(preload("res://assets/hanger.webp"))
+		winning_order = [null, [5], [2, 6], null, null, [1, 4], [3]]
 	if level == 5:
+		images.append(preload("res://assets/cloth.webp"))
+		images.append(preload("res://assets/vase.webp"))
+		images.append(preload("res://assets/pictures.webp"))
+		images.append(preload("res://assets/flowers.webp"))
+		images.append(preload("res://assets/carpet.webp"))
+		images.append(preload("res://assets/table.webp"))
+		winning_order = [[2], null, [4], [2], [6], [1]]
+	if level == 6:
 		images.append(preload("res://assets/boat.webp"))
 		images.append(preload("res://assets/sea.webp"))
 		images.append(preload("res://assets/sea1.webp"))
