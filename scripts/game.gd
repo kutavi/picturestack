@@ -56,6 +56,29 @@ func _ready():
 		images.append(preload("res://assets/shark.webp"))
 		images.append(preload("res://assets/island.webp"))
 		winning_order = [[3], [6], [5], [3], [2], null]
+	if level == 7:
+		images.append(preload("res://assets/magnify.webp"))
+		images.append(preload("res://assets/images.webp"))
+		images.append(preload("res://assets/text.webp"))
+		images.append(preload("res://assets/book.webp"))
+		images.append(preload("res://assets/bookmark.webp"))
+		winning_order = [null, [5], [1, 2], [3], null]
+	if level == 8:
+		images.append(preload("res://assets/rails.webp"))
+		images.append(preload("res://assets/sky.webp"))
+		images.append(preload("res://assets/train.webp"))
+		images.append(preload("res://assets/mountain.webp"))
+		images.append(preload("res://assets/tunnel.webp"))
+		winning_order = [[3], [4], null, [5], [1]]
+	if level == 9:
+		images.append(preload("res://assets/cars.webp"))
+		images.append(preload("res://assets/trees.webp"))
+		images.append(preload("res://assets/ground.webp"))
+		images.append(preload("res://assets/bridge.webp"))
+		images.append(preload("res://assets/ducks.webp"))
+		images.append(preload("res://assets/mountains.webp"))
+		images.append(preload("res://assets/river.webp"))
+		winning_order = [[4], [1], [7], null, [4], [3], [1, 5]]
 	_level_setup()
 		
 
