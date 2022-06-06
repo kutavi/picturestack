@@ -79,6 +79,15 @@ func _ready():
 		images.append(preload("res://assets/mountains.webp"))
 		images.append(preload("res://assets/river.webp"))
 		winning_order = [[4], [1], [7], null, [4], [3], [1, 5]]
+	if level == 10:
+		images.append(preload("res://assets/bowl.webp"))
+		images.append(preload("res://assets/curtains.webp"))
+		images.append(preload("res://assets/window.webp"))
+		images.append(preload("res://assets/cupboard.webp"))
+		images.append(preload("res://assets/fruits.webp"))
+		images.append(preload("res://assets/view.webp"))
+		images.append(preload("res://assets/wall.webp"))
+		winning_order = [null, [4], [2, 5], null, [1], [3], [6]]
 	_level_setup()
 		
 
