@@ -10,83 +10,83 @@ var winning_order
 
 func _ready():
 	get_node(Global.WINNING_POPUP).hide()
-	if (!Global.level):
+	if (!Global.reached_level):
 		_load_level()
-	var level = Global.level
+	var level = Global.current_level
 
 	if level == 1:
-		images.append(preload("res://assets/heart.webp"))
-		images.append(preload("res://assets/arrow.webp"))
+		images.append(preload("res://assets/level_parts/heart.webp"))
+		images.append(preload("res://assets/level_parts/arrow.webp"))
 		winning_order = [null, [1]] # 1st asset doesnt matter, 2nd should be before 1st
 	if level == 2:
-		images.append(preload("res://assets/worm.webp"))
-		images.append(preload("res://assets/apple.webp"))
-		images.append(preload("res://assets/leaves.webp"))
-		images.append(preload("res://assets/plate.webp"))
+		images.append(preload("res://assets/level_parts/worm.webp"))
+		images.append(preload("res://assets/level_parts/apple.webp"))
+		images.append(preload("res://assets/level_parts/leaves.webp"))
+		images.append(preload("res://assets/level_parts/plate.webp"))
 		winning_order = [[2], null, [2], [2]]
 	if level == 4:
-		images.append(preload("res://assets/road.webp"))
-		images.append(preload("res://assets/house.webp"))
-		images.append(preload("res://assets/grass.webp"))
-		images.append(preload("res://assets/sky.webp"))
-		images.append(preload("res://assets/fence.webp"))
+		images.append(preload("res://assets/level_parts/road.webp"))
+		images.append(preload("res://assets/level_parts/house.webp"))
+		images.append(preload("res://assets/level_parts/grass.webp"))
+		images.append(preload("res://assets/level_parts/sky.webp"))
+		images.append(preload("res://assets/level_parts/fence.webp"))
 		winning_order = [[2, 5], null, [1], [3], null] # 1st asset before 2nd AND 5th
 	if level == 3:
-		images.append(preload("res://assets/cloud.webp"))
-		images.append(preload("res://assets/pen.webp"))
-		images.append(preload("res://assets/shirt.webp"))
-		images.append(preload("res://assets/unicorn.webp"))
-		images.append(preload("res://assets/pocket.webp"))
-		images.append(preload("res://assets/rainbow.webp"))
-		images.append(preload("res://assets/hanger.webp"))
+		images.append(preload("res://assets/level_parts/cloud.webp"))
+		images.append(preload("res://assets/level_parts/pen.webp"))
+		images.append(preload("res://assets/level_parts/shirt.webp"))
+		images.append(preload("res://assets/level_parts/unicorn.webp"))
+		images.append(preload("res://assets/level_parts/pocket.webp"))
+		images.append(preload("res://assets/level_parts/rainbow.webp"))
+		images.append(preload("res://assets/level_parts/hanger.webp"))
 		winning_order = [null, [5], [2, 6], null, null, [1, 4], [3]]
 	if level == 5:
-		images.append(preload("res://assets/cloth.webp"))
-		images.append(preload("res://assets/vase.webp"))
-		images.append(preload("res://assets/pictures.webp"))
-		images.append(preload("res://assets/flowers.webp"))
-		images.append(preload("res://assets/carpet.webp"))
-		images.append(preload("res://assets/table.webp"))
+		images.append(preload("res://assets/level_parts/cloth.webp"))
+		images.append(preload("res://assets/level_parts/vase.webp"))
+		images.append(preload("res://assets/level_parts/pictures.webp"))
+		images.append(preload("res://assets/level_parts/flowers.webp"))
+		images.append(preload("res://assets/level_parts/carpet.webp"))
+		images.append(preload("res://assets/level_parts/table.webp"))
 		winning_order = [[2], null, [4], [2], [6], [1]]
 	if level == 6:
-		images.append(preload("res://assets/boat.webp"))
-		images.append(preload("res://assets/sea.webp"))
-		images.append(preload("res://assets/sea1.webp"))
-		images.append(preload("res://assets/sun.webp"))
-		images.append(preload("res://assets/shark.webp"))
-		images.append(preload("res://assets/island.webp"))
+		images.append(preload("res://assets/level_parts/boat.webp"))
+		images.append(preload("res://assets/level_parts/sea.webp"))
+		images.append(preload("res://assets/level_parts/sea1.webp"))
+		images.append(preload("res://assets/level_parts/sun.webp"))
+		images.append(preload("res://assets/level_parts/shark.webp"))
+		images.append(preload("res://assets/level_parts/island.webp"))
 		winning_order = [[3], [6], [5], [3], [2], null]
 	if level == 7:
-		images.append(preload("res://assets/magnify.webp"))
-		images.append(preload("res://assets/images.webp"))
-		images.append(preload("res://assets/text.webp"))
-		images.append(preload("res://assets/book.webp"))
-		images.append(preload("res://assets/bookmark.webp"))
+		images.append(preload("res://assets/level_parts/magnify.webp"))
+		images.append(preload("res://assets/level_parts/images.webp"))
+		images.append(preload("res://assets/level_parts/text.webp"))
+		images.append(preload("res://assets/level_parts/book.webp"))
+		images.append(preload("res://assets/level_parts/bookmark.webp"))
 		winning_order = [null, [5], [1, 2], [3], null]
 	if level == 8:
-		images.append(preload("res://assets/rails.webp"))
-		images.append(preload("res://assets/sky.webp"))
-		images.append(preload("res://assets/train.webp"))
-		images.append(preload("res://assets/mountain.webp"))
-		images.append(preload("res://assets/tunnel.webp"))
+		images.append(preload("res://assets/level_parts/rails.webp"))
+		images.append(preload("res://assets/level_parts/sky.webp"))
+		images.append(preload("res://assets/level_parts/train.webp"))
+		images.append(preload("res://assets/level_parts/mountain.webp"))
+		images.append(preload("res://assets/level_parts/tunnel.webp"))
 		winning_order = [[3], [4], null, [5], [1]]
 	if level == 9:
-		images.append(preload("res://assets/cars.webp"))
-		images.append(preload("res://assets/trees.webp"))
-		images.append(preload("res://assets/ground.webp"))
-		images.append(preload("res://assets/bridge.webp"))
-		images.append(preload("res://assets/ducks.webp"))
-		images.append(preload("res://assets/mountains.webp"))
-		images.append(preload("res://assets/river.webp"))
+		images.append(preload("res://assets/level_parts/cars.webp"))
+		images.append(preload("res://assets/level_parts/trees.webp"))
+		images.append(preload("res://assets/level_parts/ground.webp"))
+		images.append(preload("res://assets/level_parts/bridge.webp"))
+		images.append(preload("res://assets/level_parts/ducks.webp"))
+		images.append(preload("res://assets/level_parts/mountains.webp"))
+		images.append(preload("res://assets/level_parts/river.webp"))
 		winning_order = [[4], [1], [7], null, [4], [3], [1, 5]]
 	if level == 10:
-		images.append(preload("res://assets/bowl.webp"))
-		images.append(preload("res://assets/curtains.webp"))
-		images.append(preload("res://assets/window.webp"))
-		images.append(preload("res://assets/cupboard.webp"))
-		images.append(preload("res://assets/fruits.webp"))
-		images.append(preload("res://assets/view.webp"))
-		images.append(preload("res://assets/wall.webp"))
+		images.append(preload("res://assets/level_parts/bowl.webp"))
+		images.append(preload("res://assets/level_parts/curtains.webp"))
+		images.append(preload("res://assets/level_parts/window.webp"))
+		images.append(preload("res://assets/level_parts/cupboard.webp"))
+		images.append(preload("res://assets/level_parts/fruits.webp"))
+		images.append(preload("res://assets/level_parts/view.webp"))
+		images.append(preload("res://assets/level_parts/wall.webp"))
 		winning_order = [null, [4], [2, 5], null, [1], [3], [6]]
 	_level_setup()
 		
@@ -143,25 +143,32 @@ func _load_level():
 	var save_file = File.new()
 	if not save_file.file_exists(Global.SAVE_FILE):
 		print("No savefile")
-		Global.level = 1
+		Global.reached_level = 1
+		Global.current_level = 1
 		return
 
 	save_file.open(Global.SAVE_FILE, File.READ)
-	Global.level = int(save_file.get_line())
-	if (!Global.level):
-		Global.level = 1
+	var saved_level = int(save_file.get_line())
+	Global.reached_level = saved_level
+	Global.current_level = saved_level
+
+	if (!Global.reached_level):
+		Global.reached_level = 1
+		Global.current_level = 1
 	save_file.close()
 
 func _save_level():
-	print("Saving...")
-
-	var save_file = File.new()
-	save_file.open(Global.SAVE_FILE, File.WRITE)
-	save_file.store_line(String(Global.level + 1))
-	save_file.close()
+	if (Global.current_level >= Global.reached_level):
+		print("Saving...")
+		var next_level = Global.current_level + 1
+		var save_file = File.new()
+		save_file.open(Global.SAVE_FILE, File.WRITE)
+		save_file.store_line(String(next_level))
+		Global.reached_level = next_level
+		save_file.close()
 
 func _on_NextLevel_pressed():
-	Global.level = Global.level + 1
+	Global.current_level = Global.current_level + 1
 # warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 

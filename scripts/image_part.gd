@@ -6,7 +6,8 @@ func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed() \
-	and !get_node(Global.LEVEL).game_ended:
+	and !get_node(Global.LEVEL).game_ended \
+	and !get_node(Global.ALBUM).is_visible():
 		self._place_image()
 		get_node(Global.LEVEL).check_winning()
 
