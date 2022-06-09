@@ -10,28 +10,32 @@ var winning_order
 
 func _ready():
 	get_node(Global.WINNING_POPUP).hide()
+	get_node(Global.BOARD).show()
+	get_node(Global.IMAGE_PARTS_GROUP).show()
+	get_node(Global.ALBUM).hide()
+	get_node(Global.VICTORY).hide()
+
 	if (!Global.reached_level):
 		_load_level()
 	var level = Global.current_level
-
 	if level == 1:
 		images.append(preload("res://assets/level_parts/heart.webp"))
 		images.append(preload("res://assets/level_parts/arrow.webp"))
 		winning_order = [null, [1]] # 1st asset doesnt matter, 2nd should be before 1st
-	if level == 2:
+	elif level == 2:
 		images.append(preload("res://assets/level_parts/worm.webp"))
 		images.append(preload("res://assets/level_parts/apple.webp"))
 		images.append(preload("res://assets/level_parts/leaves.webp"))
 		images.append(preload("res://assets/level_parts/plate.webp"))
 		winning_order = [[2], null, [2], [2]]
-	if level == 4:
+	elif level == 4:
 		images.append(preload("res://assets/level_parts/road.webp"))
 		images.append(preload("res://assets/level_parts/house.webp"))
 		images.append(preload("res://assets/level_parts/grass.webp"))
 		images.append(preload("res://assets/level_parts/sky.webp"))
 		images.append(preload("res://assets/level_parts/fence.webp"))
 		winning_order = [[2, 5], null, [1], [3], null] # 1st asset before 2nd AND 5th
-	if level == 3:
+	elif level == 3:
 		images.append(preload("res://assets/level_parts/cloud.webp"))
 		images.append(preload("res://assets/level_parts/pen.webp"))
 		images.append(preload("res://assets/level_parts/shirt.webp"))
@@ -40,7 +44,7 @@ func _ready():
 		images.append(preload("res://assets/level_parts/rainbow.webp"))
 		images.append(preload("res://assets/level_parts/hanger.webp"))
 		winning_order = [null, [5], [2, 6], null, null, [1, 4], [3]]
-	if level == 5:
+	elif level == 5:
 		images.append(preload("res://assets/level_parts/cloth.webp"))
 		images.append(preload("res://assets/level_parts/vase.webp"))
 		images.append(preload("res://assets/level_parts/pictures.webp"))
@@ -48,7 +52,7 @@ func _ready():
 		images.append(preload("res://assets/level_parts/carpet.webp"))
 		images.append(preload("res://assets/level_parts/table.webp"))
 		winning_order = [[2], null, [4], [2], [6], [1]]
-	if level == 6:
+	elif level == 6:
 		images.append(preload("res://assets/level_parts/boat.webp"))
 		images.append(preload("res://assets/level_parts/sea.webp"))
 		images.append(preload("res://assets/level_parts/sea1.webp"))
@@ -56,21 +60,21 @@ func _ready():
 		images.append(preload("res://assets/level_parts/shark.webp"))
 		images.append(preload("res://assets/level_parts/island.webp"))
 		winning_order = [[3], [6], [5], [3], [2], null]
-	if level == 7:
+	elif level == 7:
 		images.append(preload("res://assets/level_parts/magnify.webp"))
 		images.append(preload("res://assets/level_parts/images.webp"))
 		images.append(preload("res://assets/level_parts/text.webp"))
 		images.append(preload("res://assets/level_parts/book.webp"))
 		images.append(preload("res://assets/level_parts/bookmark.webp"))
 		winning_order = [null, [5], [1, 2], [3], null]
-	if level == 8:
+	elif level == 8:
 		images.append(preload("res://assets/level_parts/rails.webp"))
 		images.append(preload("res://assets/level_parts/sky.webp"))
 		images.append(preload("res://assets/level_parts/train.webp"))
 		images.append(preload("res://assets/level_parts/mountain.webp"))
 		images.append(preload("res://assets/level_parts/tunnel.webp"))
 		winning_order = [[3], [4], null, [5], [1]]
-	if level == 9:
+	elif level == 9:
 		images.append(preload("res://assets/level_parts/cars.webp"))
 		images.append(preload("res://assets/level_parts/trees.webp"))
 		images.append(preload("res://assets/level_parts/ground.webp"))
@@ -79,7 +83,7 @@ func _ready():
 		images.append(preload("res://assets/level_parts/mountains.webp"))
 		images.append(preload("res://assets/level_parts/river.webp"))
 		winning_order = [[4], [1], [7], null, [4], [3], [1, 5]]
-	if level == 10:
+	elif level == 10:
 		images.append(preload("res://assets/level_parts/bowl.webp"))
 		images.append(preload("res://assets/level_parts/curtains.webp"))
 		images.append(preload("res://assets/level_parts/window.webp"))
@@ -88,6 +92,10 @@ func _ready():
 		images.append(preload("res://assets/level_parts/view.webp"))
 		images.append(preload("res://assets/level_parts/wall.webp"))
 		winning_order = [null, [4], [2, 5], null, [1], [3], [6]]
+	else:
+		get_node(Global.BOARD).hide()
+		# get_node(Global.ALBUM).open()
+		get_node(Global.VICTORY).show()
 	_level_setup()
 		
 

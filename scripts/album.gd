@@ -61,10 +61,11 @@ func _handle_page_change():
 			level_select.hide()
 			get_node("Reset").show()
 
-func _open(): 
+func open(): 
 	get_node(Global.ALBUM).show()
 	get_node(Global.BOARD).hide()
 	get_node(Global.WINNING_POPUP).hide()
+	get_node(Global.VICTORY).hide()
 	# open page showing the current level
 	page = Global.current_level / (levels_per_page + 1)
 	_handle_page_change()
@@ -73,6 +74,9 @@ func _close():
 	get_node(Global.BOARD).show()
 	if get_node(Global.LEVEL).game_ended:
 		get_node(Global.WINNING_POPUP).show()
+	if Global.current_level > Global.total_levels:
+		get_node(Global.BOARD).hide()
+		get_node(Global.VICTORY).show()
 	get_node(Global.ALBUM).hide()
 	
 func _on_NextPage_pressed():
@@ -87,7 +91,7 @@ func _on_Close_pressed():
 	_close()
 
 func _on_Open_pressed():
-	_open()
+	open()
 
 func _on_Reset_pressed():
 	var confirmation = get_node("/root/Level/ConfirmationDialog")
