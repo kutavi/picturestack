@@ -20,13 +20,13 @@ func _prepare_levels():
 	images.append(preload("res://assets/levels/level_heart.webp"))
 	images.append(preload("res://assets/levels/level_apple.webp"))
 	images.append(preload("res://assets/levels/level_shirt.webp"))
-	images.append(preload("res://assets/levels/level_house.webp"))
-	images.append(preload("res://assets/levels/level_vase.webp"))
-	images.append(preload("res://assets/levels/level_sea.webp"))
 	images.append(preload("res://assets/levels/level_book.webp"))
+	images.append(preload("res://assets/levels/level_vase.webp"))
+	images.append(preload("res://assets/levels/level_house.webp"))
 	images.append(preload("res://assets/levels/level_train.webp"))
-	images.append(preload("res://assets/levels/level_bridge.webp"))
 	images.append(preload("res://assets/levels/level_window.webp"))
+	images.append(preload("res://assets/levels/level_sea.webp"))
+	images.append(preload("res://assets/levels/level_bridge.webp"))
 
 func _handle_page_change():
 	starting_level = page * levels_per_page + 1
