@@ -457,10 +457,10 @@ __meta__ = {
 
 [node name="Reset" type="TextureButton" parent="Menu/Album"]
 visible = false
-margin_left = 214.286
-margin_top = 238.095
-margin_right = 411.286
-margin_bottom = 302.095
+margin_left = 219.048
+margin_top = -50.7937
+margin_right = 416.048
+margin_bottom = 13.2063
 rect_scale = Vector2( 2, 2 )
 texture_normal = ExtResource( 18 )
 texture_hover = ExtResource( 19 )
