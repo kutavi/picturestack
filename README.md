@@ -21,6 +21,6 @@ Play it on [Gihub pages](https://atseniklidou.github.io/picturestack/) or on [it
 To add a new level in the game follow this process:
 - export the images for the level with size 512x512 and add them to the `level_parts` folder in assets
 - decide a unique key identifier for the new level (example of current first level: "heart")
-- export an image of the completed level (512x512) and add to the `levels` folder in assets. The name should be `level_` + the level key. This image will be used in the albmum for level selection
+- export an image of the completed level (512x512) and add to the `levels` folder in assets. The name should be `level_` + the level key. This image will be used in the album for level selection
 - in `game.gd` script at the `_level_select` function, using the level's key preload the level's images and add the winning order array
 - in `global.gd` add the level's key in the `levels` array. The position in the array determines the order this level will appear
