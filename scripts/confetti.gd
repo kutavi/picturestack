@@ -6,29 +6,18 @@ class_name FakeConfettiParticles
 ## If `true`, particles are being emitted.
 export (bool) var emitting = false setget _set_emitting
 ## The type of particles:
-##
 ## - `0 (Square)`.
 ## - `1 (Circle)`.
 export (int, "Square", "Circle") var type = 0
 ## The number of particles.
 export (int) var amount = 100
-## If `true`, the number of particles can be a
-## random number between `amount / 2` and `amount * 2`.
-##
-## If `false`, the number of particles will be the exact number in @link_name {amount}.
-export (bool) var random_amount = false
+
 ## The size of the particles.
 ##
 ## If the particles are squares, `size` is the length of their sides.
 ## If the particles are circles, `size` is their radius.
 export (float) var size = 6.0
-## If `true`, the size of the particles can be a
-## random number between `size / 2` and `size * 2`.
-##
-## If `false`, the size of the particles will be the exact number in @link_name {size}.
-export (bool) var random_size = false
-## Controls the visibility of the particles.
-export (Rect2) var visibility_rect = Rect2(0, 0, 1024.0, 600.0)
+
 ## The color/s of the particles.
 export (Array) var colors = [
 	Color("#008751"),
@@ -41,11 +30,6 @@ export (Array) var colors = [
 	Color("#ffa300"),
 	Color("#ffec27")
 ]
-## If `true`, the initial position of the particles
-## can be a random position in @link_name {visibility_rect}.
-##
-## If `false`, the initial position of the particles will be `Vector(0, 0)`.
-export (bool) var random_position = false
 ## If `true`, only one emission cycle occurs.
 export (bool) var one_shot = true
 ## If `true`, the particles will gradually fade.
@@ -94,28 +78,17 @@ func _draw():
 
 func _create_particles():
 	particles.clear()
-
-	if random_amount:
-		particles_amount = _get_random_amount()
-	else:
-		particles_amount = amount
-
-	if random_position:
-		particles_position = _get_random_position()
-	else:
-		particles_position = get_viewport_rect().size / 2
+	particles_amount = amount
+	particles_position = get_viewport_rect().size / 2
 
 	for _i in particles_amount:
 		var particle = {
 			color = _get_random_color(),
 			gravity = _get_random_gravity(),
 			position = particles_position,
-			size = _get_random_size(),
+			size = Vector2(size, size),
 			velocity = _get_random_velocity()
 		}
-
-		if not random_size:
-			particle.size = Vector2(size, size)
 
 		particles.append(particle)
 
@@ -137,25 +110,6 @@ func _get_random_color():
 
 func _get_random_gravity():
 	return Vector2(rand_range(-200, 200), rand_range(400, 800))
-
-
-func _get_random_amount():
-	return round(rand_range(amount / 2.0, amount * 2.0))
-
-
-func _get_random_position():
-	var x = rand_range(0, visibility_rect.size.x)
-	var y = rand_range(0, visibility_rect.size.y)
-
-	return Vector2(x, y)
-
-
-func _get_random_size():
-	var min_size = int(ceil(size / 2.0))
-	var max_size = int(ceil(size * 2.0))
-	var random_min_max_size = randi() % (max_size - min_size + 1) + min_size
-
-	return Vector2(random_min_max_size, random_min_max_size)
 
 
 func _get_random_velocity():

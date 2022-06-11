@@ -6,17 +6,17 @@ func _input_event(_viewport, event, _shape_idx):
 	if event is InputEventMouseButton \
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed() \
-	and !get_node(Global.LEVEL).game_ended \
-	and !get_node(Global.ALBUM).is_visible():
+	and !get_node(Global.LEVEL_NODE).game_ended \
+	and !get_node(Global.ALBUM_NODE).is_visible():
 		self._place_image()
-		get_node(Global.LEVEL).check_winning()
+		get_node(Global.LEVEL_NODE).check_winning()
 
 func _place_image():
-	var board = get_node(Global.BOARD)
-	get_node(Global.RULES_TEXT).hide()
+	var board = get_node(Global.BOARD_NODE)
+	get_node(Global.RULES_TEXT_NODE).hide()
 	var which_one_to_handle = self.name[1]
 	var board_part = board.get_node(Global.BOARD_PART + which_one_to_handle)
-	var image_sprite = self.get_node(Global.IMAGE_SPRITE)
+	var image_sprite = self.get_node(Global.IMAGE_SPRITE_NODE)
 
 	if _placed_on_board:
 		board_part.hide()

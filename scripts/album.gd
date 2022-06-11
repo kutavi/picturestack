@@ -9,72 +9,53 @@ var images = []
 
 
 func _ready():
-	_prepare_levels()
-	var levels = self.get_node("Levels")
+	for lvlKey in Global.levels:
+		images.append(load(Global.ALBUM_PATH + "level_" + lvlKey + ".webp"))
+	var levels = get_node(Global.ALBUM_LEVELS_NODE)
 	for n in range(1, levels.get_child_count() + 1):
-		var level_select = levels.get_node('L' + String(n))
-		level_select.set_script(load(Global.SCRIPTS_PATH + "level.gd"))
+		var level_select = levels.get_node(Global.ALBUM_PART + String(n))
+		level_select.set_script(load(Global.SCRIPTS_PATH + "level_selection.gd"))
 		level_select.set_process_input(true) # we need to enable this since we load the script via code
-
-func _prepare_levels():
-	images.append(preload("res://assets/levels/level_heart.webp"))
-	images.append(preload("res://assets/levels/level_hourglass.webp"))
-	images.append(preload("res://assets/levels/level_apple.webp"))
-	images.append(preload("res://assets/levels/level_watch.webp"))
-	images.append(preload("res://assets/levels/level_flower.webp"))
-	images.append(preload("res://assets/levels/level_photo.webp"))
-	images.append(preload("res://assets/levels/level_shirt.webp"))
-	images.append(preload("res://assets/levels/level_book.webp"))
-	images.append(preload("res://assets/levels/level_milkshake.webp"))
-	images.append(preload("res://assets/levels/level_darts.webp"))
-	images.append(preload("res://assets/levels/level_burger.webp"))
-	images.append(preload("res://assets/levels/level_house.webp"))
-	images.append(preload("res://assets/levels/level_train.webp"))
-	images.append(preload("res://assets/levels/level_vase.webp"))
-	images.append(preload("res://assets/levels/level_window.webp"))
-	images.append(preload("res://assets/levels/level_board.webp"))
-	images.append(preload("res://assets/levels/level_lamp.webp"))
-	images.append(preload("res://assets/levels/level_sea.webp"))
-	images.append(preload("res://assets/levels/level_bridge.webp"))
 
 func _handle_page_change():
 	starting_level = page * levels_per_page + 1
-	get_node('NextPage').show()
-	get_node('PrevPage').show()
+	get_node("NextPage").show()
+	get_node("PrevPage").show()
 	get_node("Reset").hide()
 	if (page == 0):
-		get_node('PrevPage').hide()
+		get_node("PrevPage").hide()
 	if (page == Global.total_levels / levels_per_page):
-		get_node('NextPage').hide()
-	var levels = self.get_node("Levels")
+		get_node("NextPage").hide()
+	var levels =  get_node(Global.ALBUM_LEVELS_NODE)
 	for m in range(0, levels.get_child_count()):
-		var level_select = levels.get_node('L' + String(m + 1))
+		var level_select = levels.get_node(Global.ALBUM_PART + String(m + 1))
 		var which_level = starting_level + m
 		if (starting_level + m) <= Global.total_levels:
 			level_select.show()
+			var sprite = level_select.get_node(Global.FRAME_SPRITE_NODE)
 			if which_level < Global.reached_level:
-				level_select.get_node(Global.FRAME_SPRITE).set_texture(images[which_level - 1])
+				sprite.set_texture(images[which_level - 1])
 				level_select.disabled = false
 				level_select.level_number = which_level
-				level_select.get_node(Global.FRAME_SPRITE).set_scale(FRAME_SCALE)
+				sprite.set_scale(FRAME_SCALE)
 			elif which_level == Global.reached_level:
-				level_select.get_node(Global.FRAME_SPRITE).set_texture(load('res://assets/unlocked.png'))
+				sprite.set_texture(load(Global.ASSETS_PATH + "unlocked.png"))
 				level_select.disabled = false
 				level_select.level_number = which_level
-				level_select.get_node(Global.FRAME_SPRITE).set_scale(Vector2(1, 1))
+				sprite.set_scale(Vector2(1, 1))
 			else:
-				level_select.get_node(Global.FRAME_SPRITE).set_texture(load('res://assets/locked.webp'))
+				sprite.set_texture(load(Global.ASSETS_PATH + "locked.webp"))
 				level_select.disabled = true
-				level_select.get_node(Global.FRAME_SPRITE).set_scale(Vector2(1, 1))
+				sprite.set_scale(Vector2(1, 1))
 		else:
 			level_select.hide()
 			get_node("Reset").show()
 
 func open(): 
-	get_node(Global.ALBUM).show()
-	get_node(Global.BOARD).hide()
-	get_node(Global.WINNING_POPUP).hide()
-	get_node(Global.VICTORY).hide()
+	get_node(Global.ALBUM_NODE).show()
+	get_node(Global.BOARD_NODE).hide()
+	get_node(Global.WINNING_POPUP_NODE).hide()
+	get_node(Global.VICTORY_NODE).hide()
 	# open page showing the current level
 	if Global.current_level % levels_per_page:
 		page = Global.current_level / levels_per_page
@@ -83,13 +64,13 @@ func open():
 	_handle_page_change()
 	
 func _close():
-	get_node(Global.BOARD).show()
-	if get_node(Global.LEVEL).game_ended:
-		get_node(Global.WINNING_POPUP).show()
+	get_node(Global.BOARD_NODE).show()
+	get_node(Global.ALBUM_NODE).hide()
+	if get_node(Global.LEVEL_NODE).game_ended:
+		get_node(Global.WINNING_POPUP_NODE).show()
 	if Global.current_level > Global.total_levels:
-		get_node(Global.BOARD).hide()
-		get_node(Global.VICTORY).show()
-	get_node(Global.ALBUM).hide()
+		get_node(Global.BOARD_NODE).hide()
+		get_node(Global.VICTORY_NODE).show()
 	
 func _on_NextPage_pressed():
 	page = page + 1
@@ -106,7 +87,7 @@ func _on_Open_pressed():
 	open()
 
 func _on_Reset_pressed():
-	var confirmation = get_node("/root/Level/ConfirmationDialog")
+	var confirmation = get_node(Global.RESET_CONFIRM_NODE)
 	confirmation.popup()
 	
 func _on_Reset_confirm():
