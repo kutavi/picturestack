@@ -11,24 +11,24 @@ export (bool) var emitting = false setget _set_emitting
 ## - `1 (Circle)`.
 export (int, "Square", "Circle") var type = 0
 ## The number of particles.
-export (int) var amount = 150
+export (int) var amount = 100
 ## If `true`, the number of particles can be a
 ## random number between `amount / 2` and `amount * 2`.
 ##
 ## If `false`, the number of particles will be the exact number in @link_name {amount}.
-export (bool) var random_amount = true
+export (bool) var random_amount = false
 ## The size of the particles.
 ##
 ## If the particles are squares, `size` is the length of their sides.
 ## If the particles are circles, `size` is their radius.
-export (float) var size = 10.0
+export (float) var size = 6.0
 ## If `true`, the size of the particles can be a
 ## random number between `size / 2` and `size * 2`.
 ##
 ## If `false`, the size of the particles will be the exact number in @link_name {size}.
-export (bool) var random_size = true
+export (bool) var random_size = false
 ## Controls the visibility of the particles.
-export (Rect2) var visibility_rect = Rect2(-1024.0, -600.0, 1024.0, 600.0)
+export (Rect2) var visibility_rect = Rect2(0, 0, 1024.0, 600.0)
 ## The color/s of the particles.
 export (Array) var colors = [
 	Color("#008751"),
@@ -45,15 +45,15 @@ export (Array) var colors = [
 ## can be a random position in @link_name {visibility_rect}.
 ##
 ## If `false`, the initial position of the particles will be `Vector(0, 0)`.
-export (bool) var random_position = true
+export (bool) var random_position = false
 ## If `true`, only one emission cycle occurs.
-export (bool) var one_shot = false
+export (bool) var one_shot = true
 ## If `true`, the particles will gradually fade.
 ##
 ## If `false`, the particles will end abruptly.
 export (bool) var fade = true
 ## The duration (in seconds) of the emission cycle.
-export (float) var timer_wait_time = 1.0
+export (float) var timer_wait_time = 10.0
 
 var particles = []
 var particles_amount
@@ -74,8 +74,6 @@ func _process(delta):
 
 		if one_shot:
 			self.emitting = false
-			if not Engine.editor_hint:
-				queue_free()
 		else:
 			_create_particles()
 
@@ -105,7 +103,7 @@ func _create_particles():
 	if random_position:
 		particles_position = _get_random_position()
 	else:
-		particles_position = Vector2.ZERO
+		particles_position = get_viewport_rect().size / 2
 
 	for _i in particles_amount:
 		var particle = {
@@ -117,7 +115,7 @@ func _create_particles():
 		}
 
 		if not random_size:
-			particle.size = size
+			particle.size = Vector2(size, size)
 
 		particles.append(particle)
 

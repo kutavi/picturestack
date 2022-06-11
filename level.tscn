@@ -243,7 +243,6 @@ shape = SubResource( 1 )
 [node name="Victory" type="Sprite" parent="."]
 z_as_relative = false
 script = ExtResource( 20 )
-size = 3.0
 
 [node name="congrats" type="RichTextLabel" parent="Victory"]
 self_modulate = Color( 0.152941, 0.152941, 0.152941, 1 )

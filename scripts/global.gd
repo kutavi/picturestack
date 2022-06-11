@@ -2,7 +2,7 @@ extends Node
 
 var reached_level = 0
 var current_level = 0
-var total_levels = 14
+var total_levels = 17
 
 const BOARD_PART = "b"
 const IMAGE_PART = "P"

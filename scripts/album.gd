@@ -18,16 +18,19 @@ func _ready():
 
 func _prepare_levels():
 	images.append(preload("res://assets/levels/level_heart.webp"))
+	images.append(preload("res://assets/levels/level_hourglass.webp"))
 	images.append(preload("res://assets/levels/level_apple.webp"))
 	images.append(preload("res://assets/levels/level_watch.webp"))
 	images.append(preload("res://assets/levels/level_flower.webp"))
 	images.append(preload("res://assets/levels/level_photo.webp"))
 	images.append(preload("res://assets/levels/level_shirt.webp"))
 	images.append(preload("res://assets/levels/level_book.webp"))
+	images.append(preload("res://assets/levels/level_darts.webp"))
 	images.append(preload("res://assets/levels/level_house.webp"))
 	images.append(preload("res://assets/levels/level_train.webp"))
 	images.append(preload("res://assets/levels/level_vase.webp"))
 	images.append(preload("res://assets/levels/level_window.webp"))
+	images.append(preload("res://assets/levels/level_board.webp"))
 	images.append(preload("res://assets/levels/level_lamp.webp"))
 	images.append(preload("res://assets/levels/level_sea.webp"))
 	images.append(preload("res://assets/levels/level_bridge.webp"))
@@ -71,7 +74,10 @@ func open():
 	get_node(Global.WINNING_POPUP).hide()
 	get_node(Global.VICTORY).hide()
 	# open page showing the current level
-	page = Global.current_level / (levels_per_page + 1)
+	if Global.current_level % levels_per_page:
+		page = Global.current_level / levels_per_page
+	else:
+		page = Global.current_level / levels_per_page - 1 # to cover the case of the last item on a page
 	_handle_page_change()
 	
 func _close():
