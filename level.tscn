@@ -251,7 +251,7 @@ margin_top = 182.0
 margin_right = 1026.0
 margin_bottom = 497.0
 custom_fonts/normal_font = SubResource( 5 )
-text = "                COGRATS!
+text = "               CONGRATS!
 
      You finished the game"
 __meta__ = {

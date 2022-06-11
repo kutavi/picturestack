@@ -22,10 +22,12 @@ func _prepare_levels():
 	images.append(preload("res://assets/levels/level_shirt.webp"))
 	images.append(preload("res://assets/levels/level_book.webp"))
 	images.append(preload("res://assets/levels/level_watch.webp"))
-	images.append(preload("res://assets/levels/level_vase.webp"))
+	images.append(preload("res://assets/levels/level_photo.webp"))
 	images.append(preload("res://assets/levels/level_house.webp"))
 	images.append(preload("res://assets/levels/level_train.webp"))
+	images.append(preload("res://assets/levels/level_vase.webp"))
 	images.append(preload("res://assets/levels/level_window.webp"))
+	images.append(preload("res://assets/levels/level_lamp.webp"))
 	images.append(preload("res://assets/levels/level_sea.webp"))
 	images.append(preload("res://assets/levels/level_bridge.webp"))
 
