@@ -19,10 +19,11 @@ func _ready():
 func _prepare_levels():
 	images.append(preload("res://assets/levels/level_heart.webp"))
 	images.append(preload("res://assets/levels/level_apple.webp"))
+	images.append(preload("res://assets/levels/level_watch.webp"))
+	images.append(preload("res://assets/levels/level_flower.webp"))
+	images.append(preload("res://assets/levels/level_photo.webp"))
 	images.append(preload("res://assets/levels/level_shirt.webp"))
 	images.append(preload("res://assets/levels/level_book.webp"))
-	images.append(preload("res://assets/levels/level_watch.webp"))
-	images.append(preload("res://assets/levels/level_photo.webp"))
 	images.append(preload("res://assets/levels/level_house.webp"))
 	images.append(preload("res://assets/levels/level_train.webp"))
 	images.append(preload("res://assets/levels/level_vase.webp"))
