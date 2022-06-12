@@ -11,6 +11,7 @@ func _input_event(_viewport, event, _shape_idx):
 		self._place_image()
 		get_node(Global.LEVEL_NODE).check_winning()
 
+
 func _place_image():
 	var board = get_node(Global.BOARD_NODE)
 	get_node(Global.RULES_TEXT_NODE).hide()

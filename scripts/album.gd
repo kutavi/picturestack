@@ -17,6 +17,7 @@ func _ready():
 		level_select.set_script(load(Global.SCRIPTS_PATH + "level_selection.gd"))
 		level_select.set_process_input(true) # we need to enable this since we load the script via code
 
+
 func _handle_page_change():
 	starting_level = page * levels_per_page + 1
 	get_node("NextPage").show()
@@ -51,6 +52,7 @@ func _handle_page_change():
 			level_select.hide()
 			get_node("Reset").show()
 
+
 func open(): 
 	get_node(Global.ALBUM_NODE).show()
 	get_node(Global.BOARD_NODE).hide()
@@ -62,7 +64,8 @@ func open():
 	else:
 		page = Global.current_level / levels_per_page - 1 # to cover the case of the last item on a page
 	_handle_page_change()
-	
+
+
 func _close():
 	get_node(Global.BOARD_NODE).show()
 	get_node(Global.ALBUM_NODE).hide()
@@ -71,25 +74,27 @@ func _close():
 	if Global.current_level > Global.total_levels:
 		get_node(Global.BOARD_NODE).hide()
 		get_node(Global.VICTORY_NODE).show()
-	
+
+
 func _on_NextPage_pressed():
 	page = page + 1
 	_handle_page_change()
+
 
 func _on_PrevPage_pressed():
 	page = page - 1
 	_handle_page_change()
 
+
 func _on_Close_pressed():
 	_close()
 
-func _on_Open_pressed():
-	open()
 
 func _on_Reset_pressed():
 	var confirmation = get_node(Global.RESET_CONFIRM_NODE)
 	confirmation.popup()
-	
+
+
 func _on_Reset_confirm():
 	Global.reached_level = 0
 	var dir = Directory.new()

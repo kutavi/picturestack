@@ -33,12 +33,13 @@ var total_levels = len(levels)
 
 const LEVEL_NODE = "/root/Level/"
 const BOARD_NODE = "/root/Level/Board"
+const MENU_NODE = "/root/Level/Menu"
 const ALBUM_NODE = "/root/Level/Menu/Album"
+const ALBUM_LEVELS_NODE = "/root/Level/Menu/Album/Levels"
 const WINNING_POPUP_NODE = "/root/Level/Win"
 const RESET_CONFIRM_NODE = "/root/Level/ConfirmationDialog"
 const VICTORY_NODE = "/root/Level/Victory"
 const RULES_TEXT_NODE = "/root/Level/Board/Rules"
-const ALBUM_LEVELS_NODE = "/root/Level/Menu/Album/Levels"
 const IMAGE_PARTS_NODE = "/root/Level/ImageParts"
 
 const IMAGE_SPRITE_NODE = "Sprite"

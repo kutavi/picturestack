@@ -22,6 +22,7 @@ func _ready():
 		_level_select()
 	else:
 		get_node(Global.BOARD_NODE).hide()
+		get_node(Global.MENU_NODE).get_node("ReloadButton").hide()
 		get_node(Global.VICTORY_NODE).show()
 	
 	_level_setup()
@@ -262,3 +263,11 @@ func _on_NextLevel_pressed():
 # warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 
+
+func _on_Album_pressed():
+	get_node(Global.ALBUM_NODE).open()
+
+
+func _on_Reload_pressed():
+	if !get_node(Global.ALBUM_NODE).is_visible():
+		get_tree().reload_current_scene()
