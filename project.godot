@@ -26,6 +26,7 @@ run/main_scene="res://level.tscn"
 [autoload]
 
 Global="*res://scripts/global.gd"
+Music="*res://main.tscn"
 
 [display]
 

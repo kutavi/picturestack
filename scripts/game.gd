@@ -10,14 +10,10 @@ var winning_order
 
 
 func _ready():
-	get_node(Global.WINNING_POPUP_NODE).hide()
-	get_node(Global.BOARD_NODE).show()
-	get_node(Global.IMAGE_PARTS_NODE).show()
-	get_node(Global.ALBUM_NODE).hide()
-	get_node(Global.VICTORY_NODE).hide()
-
-	if (!Global.reached_level):
+	if (!Global.has_loaded):
 		_load_level()
+
+	_ui_setup()
 	if (Global.current_level <= Global.total_levels):
 		_level_select()
 	else:
@@ -46,8 +42,11 @@ func check_winning():
 				if item_placement > item_that_should_be_after:
 					won = false
 	if won:
-		game_ended = true
-		_save_level()
+		game_ended = true		
+		if (Global.current_level >= Global.reached_level):
+			Global.reached_level = Global.current_level + 1
+			save_level()
+		get_node(Global.WIN_SOUND_NODE).play()
 		# place picture into the winning frame
 		get_node(Global.WINNING_POPUP_NODE).show()
 		for n in range (1, len(images) + 1):
@@ -57,6 +56,17 @@ func check_winning():
 			node.position.x = node.position.x - 70
 			node.set_rotation(0.124)
 
+
+func _ui_setup():
+	get_node(Global.WINNING_POPUP_NODE).hide()
+	get_node(Global.BOARD_NODE).show()
+	get_node(Global.IMAGE_PARTS_NODE).show()
+	get_node(Global.ALBUM_NODE).hide()
+	get_node(Global.VICTORY_NODE).hide()
+	if (!Global.music_enabled):
+		get_node(Global.MENU_NODE).mute_music(true)
+	if (!Global.sound_enabled):
+		get_node(Global.MENU_NODE).mute_sound(true)
 
 func _level_select():
 		var level = Global.levels[Global.current_level - 1]
@@ -228,34 +238,33 @@ func _level_setup():
 
 func _load_level():
 	print("Loading...")
+	Global.has_loaded = true
 
 	var save_file = File.new()
 	if not save_file.file_exists(Global.SAVE_FILE):
 		print("No savefile")
-		Global.reached_level = 1
-		Global.current_level = 1
 		return
 
 	save_file.open(Global.SAVE_FILE, File.READ)
 	var saved_level = int(save_file.get_line())
+	var music_enabled = int(save_file.get_line())
+	var sound_enabled = int(save_file.get_line())
 	Global.reached_level = saved_level
 	Global.current_level = saved_level
+	Global.music_enabled = music_enabled
+	Global.sound_enabled = sound_enabled
 
-	if (!Global.reached_level):
-		Global.reached_level = 1
-		Global.current_level = 1
 	save_file.close()
 
 
-func _save_level():
-	if (Global.current_level >= Global.reached_level):
-		print("Saving...")
-		var next_level = Global.current_level + 1
-		var save_file = File.new()
-		save_file.open(Global.SAVE_FILE, File.WRITE)
-		save_file.store_line(String(next_level))
-		Global.reached_level = next_level
-		save_file.close()
+func save_level():
+	print("Saving...")
+	var save_file = File.new()
+	save_file.open(Global.SAVE_FILE, File.WRITE)
+	save_file.store_line(String(Global.reached_level))
+	save_file.store_line(String(Global.music_enabled))
+	save_file.store_line(String(Global.sound_enabled))
+	save_file.close()
 
 
 func _on_NextLevel_pressed():
@@ -263,11 +272,3 @@ func _on_NextLevel_pressed():
 # warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 
-
-func _on_Album_pressed():
-	get_node(Global.ALBUM_NODE).open()
-
-
-func _on_Reload_pressed():
-	if !get_node(Global.ALBUM_NODE).is_visible():
-		get_tree().reload_current_scene()

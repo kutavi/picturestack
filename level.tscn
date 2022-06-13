@@ -1,8 +1,8 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://assets/placeholder.png" type="Texture" id=1]
 [ext_resource path="res://scripts/game.gd" type="Script" id=2]
-[ext_resource path="res://assets/Ubuntu-Bold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/fonts/Ubuntu-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/tile.webp" type="Texture" id=4]
 [ext_resource path="res://assets/frame.webp" type="Texture" id=5]
 [ext_resource path="res://assets/stars.webp" type="Texture" id=6]
@@ -21,6 +21,15 @@
 [ext_resource path="res://assets/reset_hover.webp" type="Texture" id=19]
 [ext_resource path="res://scripts/confetti.gd" type="Script" id=20]
 [ext_resource path="res://assets/reload.webp" type="Texture" id=21]
+[ext_resource path="res://assets/music.webp" type="Texture" id=22]
+[ext_resource path="res://assets/sounds/pop.tres" type="AudioStream" id=23]
+[ext_resource path="res://assets/sounds/page_flip.tres" type="AudioStream" id=24]
+[ext_resource path="res://assets/sounds/select.wav" type="AudioStream" id=25]
+[ext_resource path="res://assets/sounds/win.wav" type="AudioStream" id=26]
+[ext_resource path="res://assets/sounds/book_close.wav" type="AudioStream" id=27]
+[ext_resource path="res://assets/sounds/book_open.wav" type="AudioStream" id=28]
+[ext_resource path="res://assets/sound.webp" type="Texture" id=29]
+[ext_resource path="res://scripts/menu.gd" type="Script" id=30]
 
 [sub_resource type="DynamicFont" id=3]
 size = 42
@@ -34,7 +43,7 @@ font_data = ExtResource( 3 )
 extents = Vector2( 157.139, 153.846 )
 
 [sub_resource type="DynamicFontData" id=4]
-font_path = "res://assets/Ubuntu-Bold.ttf"
+font_path = "res://assets/fonts/Ubuntu-Bold.ttf"
 
 [sub_resource type="DynamicFont" id=5]
 size = 80
@@ -48,15 +57,32 @@ font_data = ExtResource( 3 )
 [node name="Level" type="Node2D"]
 script = ExtResource( 2 )
 
+[node name="MenuClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 25 )
+bus = "Effects"
+
+[node name="TileSelect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+bus = "Effects"
+
+[node name="TileRemove" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+pitch_scale = 0.3
+bus = "Effects"
+
 [node name="Background" type="Sprite" parent="."]
-position = Vector2( 513, 389 )
-scale = Vector2( 0.64, 0.64 )
+position = Vector2( 513, 386 )
+scale = Vector2( 0.65, 0.65 )
 texture = ExtResource( 7 )
 
 [node name="Win" type="Sprite" parent="."]
 visible = false
 position = Vector2( 529, 380 )
 z_index = 1
+
+[node name="LevelWin" type="AudioStreamPlayer" parent="Win"]
+stream = ExtResource( 26 )
+bus = "Effects"
 
 [node name="Frame" type="Sprite" parent="Win"]
 position = Vector2( 0, 6.10352e-05 )
@@ -83,7 +109,6 @@ __meta__ = {
 }
 
 [node name="Board" type="Sprite" parent="."]
-visible = false
 position = Vector2( 500, 398 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 8 )
@@ -255,7 +280,7 @@ margin_bottom = 497.0
 custom_fonts/normal_font = SubResource( 5 )
 text = "               CONGRATS!
 
-     You finished the game"
+       You reached the end"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -276,6 +301,7 @@ __meta__ = {
 [node name="Menu" type="Node2D" parent="."]
 position = Vector2( 504, 377 )
 scale = Vector2( 0.63, 0.63 )
+script = ExtResource( 30 )
 
 [node name="MenuButton" type="TextureButton" parent="Menu"]
 margin_left = 725.397
@@ -289,161 +315,195 @@ __meta__ = {
 }
 
 [node name="ReloadButton" type="TextureButton" parent="Menu"]
-margin_left = 742.857
-margin_top = -465.079
-margin_right = 806.857
-margin_bottom = -401.079
+margin_left = 738.095
+margin_top = -447.619
+margin_right = 802.095
+margin_bottom = -383.619
 texture_normal = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Album" type="Sprite" parent="Menu"]
+[node name="MusicButton" type="TextureButton" parent="Menu"]
+margin_left = 742.857
+margin_top = -346.032
+margin_right = 815.857
+margin_bottom = -273.032
+texture_normal = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoundButton" type="TextureButton" parent="Menu"]
+margin_left = 744.444
+margin_top = -247.619
+margin_right = 817.444
+margin_bottom = -174.619
+texture_normal = ExtResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Album" type="Sprite" parent="."]
 visible = false
+position = Vector2( 504, 377 )
+scale = Vector2( 0.63, 0.63 )
 texture = ExtResource( 12 )
 script = ExtResource( 16 )
 
-[node name="Levels" type="Sprite" parent="Menu/Album"]
+[node name="PageFlip" type="AudioStreamPlayer" parent="Album"]
+stream = ExtResource( 24 )
+bus = "Effects"
+
+[node name="AlbumClose" type="AudioStreamPlayer" parent="Album"]
+stream = ExtResource( 27 )
+bus = "Effects"
+
+[node name="AlbumOpen" type="AudioStreamPlayer" parent="Album"]
+stream = ExtResource( 28 )
+bus = "Effects"
+
+[node name="Levels" type="Sprite" parent="Album"]
 position = Vector2( -803.175, -585.714 )
 scale = Vector2( 1.55, 1.55 )
 
-[node name="L1" type="Area2D" parent="Menu/Album/Levels"]
+[node name="L1" type="Area2D" parent="Album/Levels"]
 
-[node name="Frame" type="Sprite" parent="Menu/Album/Levels/L1"]
+[node name="Frame" type="Sprite" parent="Album/Levels/L1"]
 position = Vector2( 177, 177 )
 rotation = 0.0523599
 scale = Vector2( 0.63, 0.63 )
 texture = ExtResource( 11 )
 
-[node name="Sprite" type="Sprite" parent="Menu/Album/Levels/L1/Frame"]
+[node name="Sprite" type="Sprite" parent="Album/Levels/L1/Frame"]
 texture = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Album/Levels/L1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Album/Levels/L1"]
 position = Vector2( 177, 177 )
 rotation = 0.0523599
 scale = Vector2( 0.63, 0.63 )
 shape = SubResource( 1 )
 
-[node name="L2" type="Area2D" parent="Menu/Album/Levels"]
+[node name="L2" type="Area2D" parent="Album/Levels"]
 
-[node name="Frame" type="Sprite" parent="Menu/Album/Levels/L2"]
+[node name="Frame" type="Sprite" parent="Album/Levels/L2"]
 position = Vector2( 384, 268 )
 rotation = -0.0349066
 scale = Vector2( 0.63, 0.63 )
 texture = ExtResource( 11 )
 
-[node name="Sprite" type="Sprite" parent="Menu/Album/Levels/L2/Frame"]
+[node name="Sprite" type="Sprite" parent="Album/Levels/L2/Frame"]
 texture = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Album/Levels/L2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Album/Levels/L2"]
 position = Vector2( 384, 268 )
 rotation = -0.0349066
 scale = Vector2( 0.63, 0.63 )
 shape = SubResource( 1 )
 
-[node name="L3" type="Area2D" parent="Menu/Album/Levels"]
+[node name="L3" type="Area2D" parent="Album/Levels"]
 
-[node name="Frame" type="Sprite" parent="Menu/Album/Levels/L3"]
+[node name="Frame" type="Sprite" parent="Album/Levels/L3"]
 position = Vector2( 163, 425 )
 rotation = 0.0174533
 scale = Vector2( 0.63, 0.63 )
 texture = ExtResource( 11 )
 
-[node name="Sprite" type="Sprite" parent="Menu/Album/Levels/L3/Frame"]
+[node name="Sprite" type="Sprite" parent="Album/Levels/L3/Frame"]
 texture = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Album/Levels/L3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Album/Levels/L3"]
 position = Vector2( 163, 425 )
 rotation = 0.0174533
 scale = Vector2( 0.63, 0.63 )
 shape = SubResource( 1 )
 
-[node name="L4" type="Area2D" parent="Menu/Album/Levels"]
+[node name="L4" type="Area2D" parent="Album/Levels"]
 position = Vector2( 518.178, 377.88 )
 scale = Vector2( 0.645161, 0.645161 )
 
-[node name="Frame" type="Sprite" parent="Menu/Album/Levels/L4"]
+[node name="Frame" type="Sprite" parent="Album/Levels/L4"]
 position = Vector2( -218.825, 286.936 )
 rotation = 0.0174533
 scale = Vector2( 0.9765, 0.9765 )
 texture = ExtResource( 11 )
 
-[node name="Sprite" type="Sprite" parent="Menu/Album/Levels/L4/Frame"]
+[node name="Sprite" type="Sprite" parent="Album/Levels/L4/Frame"]
 texture = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Album/Levels/L4"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Album/Levels/L4"]
 position = Vector2( -218.825, 286.936 )
 rotation = 0.0174533
 scale = Vector2( 0.9765, 0.9765 )
 shape = SubResource( 1 )
 
-[node name="L5" type="Area2D" parent="Menu/Album/Levels"]
+[node name="L5" type="Area2D" parent="Album/Levels"]
 
-[node name="Frame" type="Sprite" parent="Menu/Album/Levels/L5"]
+[node name="Frame" type="Sprite" parent="Album/Levels/L5"]
 position = Vector2( 658, 189 )
 rotation = 0.0174533
 scale = Vector2( 0.63, 0.63 )
 texture = ExtResource( 11 )
 
-[node name="Sprite" type="Sprite" parent="Menu/Album/Levels/L5/Frame"]
+[node name="Sprite" type="Sprite" parent="Album/Levels/L5/Frame"]
 texture = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Album/Levels/L5"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Album/Levels/L5"]
 position = Vector2( 658, 189 )
 rotation = 0.0174533
 scale = Vector2( 0.63, 0.63 )
 shape = SubResource( 1 )
 
-[node name="L6" type="Area2D" parent="Menu/Album/Levels"]
+[node name="L6" type="Area2D" parent="Album/Levels"]
 
-[node name="Frame" type="Sprite" parent="Menu/Album/Levels/L6"]
+[node name="Frame" type="Sprite" parent="Album/Levels/L6"]
 position = Vector2( 872, 275 )
 rotation = -0.0523599
 scale = Vector2( 0.63, 0.63 )
 texture = ExtResource( 11 )
 
-[node name="Sprite" type="Sprite" parent="Menu/Album/Levels/L6/Frame"]
+[node name="Sprite" type="Sprite" parent="Album/Levels/L6/Frame"]
 texture = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Album/Levels/L6"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Album/Levels/L6"]
 position = Vector2( 872, 275 )
 rotation = -0.0523599
 scale = Vector2( 0.63, 0.63 )
 shape = SubResource( 1 )
 
-[node name="L7" type="Area2D" parent="Menu/Album/Levels"]
+[node name="L7" type="Area2D" parent="Album/Levels"]
 
-[node name="Frame" type="Sprite" parent="Menu/Album/Levels/L7"]
+[node name="Frame" type="Sprite" parent="Album/Levels/L7"]
 position = Vector2( 656, 441 )
 scale = Vector2( 0.63, 0.63 )
 texture = ExtResource( 11 )
 
-[node name="Sprite" type="Sprite" parent="Menu/Album/Levels/L7/Frame"]
+[node name="Sprite" type="Sprite" parent="Album/Levels/L7/Frame"]
 texture = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Album/Levels/L7"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Album/Levels/L7"]
 position = Vector2( 656, 441 )
 scale = Vector2( 0.63, 0.63 )
 shape = SubResource( 1 )
 
-[node name="L8" type="Area2D" parent="Menu/Album/Levels"]
+[node name="L8" type="Area2D" parent="Album/Levels"]
 
-[node name="Frame" type="Sprite" parent="Menu/Album/Levels/L8"]
+[node name="Frame" type="Sprite" parent="Album/Levels/L8"]
 position = Vector2( 868, 522.976 )
 rotation = -0.0349066
 scale = Vector2( 0.63, 0.63 )
 texture = ExtResource( 11 )
 
-[node name="Sprite" type="Sprite" parent="Menu/Album/Levels/L8/Frame"]
+[node name="Sprite" type="Sprite" parent="Album/Levels/L8/Frame"]
 texture = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Menu/Album/Levels/L8"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Album/Levels/L8"]
 position = Vector2( 868, 522.976 )
 rotation = -0.0349066
 scale = Vector2( 0.63, 0.63 )
 shape = SubResource( 1 )
 
-[node name="PrevPage" type="TextureButton" parent="Menu/Album"]
+[node name="PrevPage" type="TextureButton" parent="Album"]
 margin_left = -719.048
 margin_top = 474.603
 margin_right = -667.048
@@ -455,7 +515,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NextPage" type="TextureButton" parent="Menu/Album"]
+[node name="NextPage" type="TextureButton" parent="Album"]
 margin_left = 682.54
 margin_top = 476.19
 margin_right = 736.54
@@ -468,7 +528,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Reset" type="TextureButton" parent="Menu/Album"]
+[node name="Reset" type="TextureButton" parent="Album"]
 visible = false
 margin_left = 219.048
 margin_top = -50.7937
@@ -481,7 +541,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Close" type="TextureButton" parent="Menu/Album"]
+[node name="Close" type="TextureButton" parent="Album"]
 margin_left = 701.587
 margin_top = -487.302
 margin_right = 765.587
@@ -493,10 +553,10 @@ __meta__ = {
 }
 
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
-margin_left = 343.0
-margin_top = 311.0
-margin_right = 679.0
-margin_bottom = 381.0
+margin_left = 340.0
+margin_top = 248.0
+margin_right = 676.0
+margin_bottom = 318.0
 window_title = "Restart game?"
 dialog_text = "Are you sure you want to delete all your progress?"
 __meta__ = {
@@ -504,10 +564,12 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="Win/NextLevel" to="." method="_on_NextLevel_pressed"]
-[connection signal="pressed" from="Menu/MenuButton" to="." method="_on_Album_pressed"]
-[connection signal="pressed" from="Menu/ReloadButton" to="." method="_on_Reload_pressed"]
-[connection signal="pressed" from="Menu/Album/PrevPage" to="Menu/Album" method="_on_PrevPage_pressed"]
-[connection signal="pressed" from="Menu/Album/NextPage" to="Menu/Album" method="_on_NextPage_pressed"]
-[connection signal="pressed" from="Menu/Album/Reset" to="Menu/Album" method="_on_Reset_pressed"]
-[connection signal="pressed" from="Menu/Album/Close" to="Menu/Album" method="_on_Close_pressed"]
-[connection signal="confirmed" from="ConfirmationDialog" to="Menu/Album" method="_on_Reset_confirm"]
+[connection signal="pressed" from="Menu/MenuButton" to="Menu" method="_on_Album_pressed"]
+[connection signal="pressed" from="Menu/ReloadButton" to="Menu" method="_on_Reload_pressed"]
+[connection signal="pressed" from="Menu/MusicButton" to="Menu" method="_on_Music_pressed"]
+[connection signal="pressed" from="Menu/SoundButton" to="Menu" method="_on_Sound_pressed"]
+[connection signal="pressed" from="Album/PrevPage" to="Album" method="_on_PrevPage_pressed"]
+[connection signal="pressed" from="Album/NextPage" to="Album" method="_on_NextPage_pressed"]
+[connection signal="pressed" from="Album/Reset" to="Album" method="_on_Reset_pressed"]
+[connection signal="pressed" from="Album/Close" to="Album" method="_on_Close_pressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="Album" method="_on_Reset_confirm"]

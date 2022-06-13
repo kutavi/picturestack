@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Pretty Things .mp3-408b922a0a89dd51f621cc7daea377c6.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Pretty Things .mp3"
+dest_files=[ "res://.import/Pretty Things .mp3-408b922a0a89dd51f621cc7daea377c6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

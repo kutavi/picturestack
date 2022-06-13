@@ -57,7 +57,9 @@ func open():
 	get_node(Global.ALBUM_NODE).show()
 	get_node(Global.BOARD_NODE).hide()
 	get_node(Global.WINNING_POPUP_NODE).hide()
+	get_node(Global.MENU_NODE).hide()
 	get_node(Global.VICTORY_NODE).hide()
+	get_node("AlbumOpen").play()
 	# open page showing the current level
 	if Global.current_level % levels_per_page:
 		page = Global.current_level / levels_per_page
@@ -69,6 +71,8 @@ func open():
 func _close():
 	get_node(Global.BOARD_NODE).show()
 	get_node(Global.ALBUM_NODE).hide()
+	get_node(Global.MENU_NODE).show()
+	get_node("AlbumClose").play()
 	if get_node(Global.LEVEL_NODE).game_ended:
 		get_node(Global.WINNING_POPUP_NODE).show()
 	if Global.current_level > Global.total_levels:
@@ -78,11 +82,13 @@ func _close():
 
 func _on_NextPage_pressed():
 	page = page + 1
+	get_node("PageFlip").play()
 	_handle_page_change()
 
 
 func _on_PrevPage_pressed():
 	page = page - 1
+	get_node("PageFlip").play()
 	_handle_page_change()
 
 
@@ -91,12 +97,13 @@ func _on_Close_pressed():
 
 
 func _on_Reset_pressed():
+	get_node(Global.MENU_SOUND_NODE).play()
 	var confirmation = get_node(Global.RESET_CONFIRM_NODE)
 	confirmation.popup()
 
 
 func _on_Reset_confirm():
-	Global.reached_level = 0
+	Global.reached_level = 1
 	var dir = Directory.new()
 	dir.remove(Global.SAVE_FILE)
 	_close()
