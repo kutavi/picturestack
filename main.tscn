@@ -1,10 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://assets/sounds/Pretty_things .mp3" type="AudioStream" id=1]
-[ext_resource path="res://scripts/audio.gd" type="Script" id=2]
 
 [node name="Music" type="AudioStreamPlayer"]
 stream = ExtResource( 1 )
 volume_db = -15.0
+autoplay = true
 bus = "Music"
-script = ExtResource( 2 )

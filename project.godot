@@ -23,6 +23,11 @@ _global_script_class_icons={
 config/name="picturestack"
 run/main_scene="res://level.tscn"
 
+[audio]
+
+mix_rate.web=40000
+output_latency.web=1000
+
 [autoload]
 
 Global="*res://scripts/global.gd"
