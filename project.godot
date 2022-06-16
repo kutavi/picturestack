@@ -25,7 +25,7 @@ run/main_scene="res://level.tscn"
 
 [audio]
 
-mix_rate.web=44100
+output_latency.web=200
 
 [autoload]
 
