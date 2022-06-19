@@ -29,7 +29,8 @@ const levels = [
 	"board",
 	"lamp",
 	"sea",
-	"bridge"
+	"bridge",
+	"crown"
 ]
 
 var total_levels = len(levels)

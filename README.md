@@ -1,7 +1,7 @@
 # Picturestack
 A casual puzzle game where you stack images to create a picture.
 
-Play it on [Gihub pages](https://atseniklidou.github.io/picturestack/) or on [itch.io](https://ffviikh.itch.io/picturestack)
+Play it on [itch.io](https://ffviikh.itch.io/picturestack)
 
 ## Built with
 - Godot engine

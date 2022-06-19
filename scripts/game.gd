@@ -214,6 +214,14 @@ func _level_select():
 				images.append(preload("res://assets/level_parts/mountains.webp"))
 				images.append(preload("res://assets/level_parts/river.webp"))
 				winning_order = [[4], [1], [7], null, [4], [3], [1, 5]]
+			"crown":
+				images.append(preload("res://assets/level_parts/jewels.webp"))
+				images.append(preload("res://assets/level_parts/lolipops.webp"))
+				images.append(preload("res://assets/level_parts/crownfront.webp"))
+				images.append(preload("res://assets/level_parts/pillow.webp"))
+				images.append(preload("res://assets/level_parts/crownhead.webp"))
+				images.append(preload("res://assets/level_parts/crownback.webp"))
+				winning_order = [null, [3], [1], [3], [3], [4, 5]]
 
 
 func _level_setup():
