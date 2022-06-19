@@ -25,7 +25,8 @@ func _place_image():
 		# re-enable image part
 		image_sprite.modulate = Color(1, 1, 1, 1)
 		_placed_on_board = false
-		get_node(Global.UNSELECT_SOUND_NODE).play()
+		get_node(Global.SELECT_SOUND_NODE).pitch_scale = 0.4
+		get_node(Global.SELECT_SOUND_NODE).play()
 	else:
 		board_part.show()
 		# move the image part being placed on top of the others
@@ -38,4 +39,5 @@ func _place_image():
 		# disable image part
 		image_sprite.modulate = Color(1, 1, 1, 0.4)
 		_placed_on_board = true
+		get_node(Global.SELECT_SOUND_NODE).pitch_scale = rand_range(0.8, 1.1)
 		get_node(Global.SELECT_SOUND_NODE).play()

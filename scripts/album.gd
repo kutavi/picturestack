@@ -82,12 +82,14 @@ func _close():
 
 func _on_NextPage_pressed():
 	page = page + 1
+	get_node("PageFlip").pitch_scale = rand_range(0.9, 1)
 	get_node("PageFlip").play()
 	_handle_page_change()
 
 
 func _on_PrevPage_pressed():
 	page = page - 1
+	get_node("PageFlip").pitch_scale = rand_range(1, 1.1)
 	get_node("PageFlip").play()
 	_handle_page_change()
 
@@ -104,7 +106,7 @@ func _on_Reset_pressed():
 
 func _on_Reset_confirm():
 	Global.reached_level = 1
-	var dir = Directory.new()
-	dir.remove(Global.SAVE_FILE)
+	Global.current_level = 1
+	get_node(Global.LEVEL_NODE).save()
 	_close()
 	get_tree().reload_current_scene()

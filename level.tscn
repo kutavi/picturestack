@@ -23,7 +23,7 @@
 [ext_resource path="res://assets/reload.webp" type="Texture" id=21]
 [ext_resource path="res://assets/music.webp" type="Texture" id=22]
 [ext_resource path="res://assets/sounds/pop.tres" type="AudioStream" id=23]
-[ext_resource path="res://assets/sounds/page_flip.tres" type="AudioStream" id=24]
+[ext_resource path="res://assets/sounds/page_flip.wav" type="AudioStream" id=24]
 [ext_resource path="res://assets/sounds/select.wav" type="AudioStream" id=25]
 [ext_resource path="res://assets/sounds/win.wav" type="AudioStream" id=26]
 [ext_resource path="res://assets/sounds/book_close.wav" type="AudioStream" id=27]
@@ -63,11 +63,6 @@ bus = "Effects"
 
 [node name="TileSelect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 23 )
-bus = "Effects"
-
-[node name="TileRemove" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 23 )
-pitch_scale = 0.3
 bus = "Effects"
 
 [node name="Background" type="Sprite" parent="."]
@@ -315,16 +310,17 @@ __meta__ = {
 }
 
 [node name="ReloadButton" type="TextureButton" parent="Menu"]
-margin_left = 738.095
-margin_top = -447.619
-margin_right = 802.095
-margin_bottom = -383.619
+margin_left = 741.27
+margin_top = -452.381
+margin_right = 805.27
+margin_bottom = -388.381
 texture_normal = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MusicButton" type="TextureButton" parent="Menu"]
+visible = false
 margin_left = 742.857
 margin_top = -346.032
 margin_right = 815.857
@@ -335,10 +331,10 @@ __meta__ = {
 }
 
 [node name="SoundButton" type="TextureButton" parent="Menu"]
-margin_left = 744.444
-margin_top = -247.619
-margin_right = 817.444
-margin_bottom = -174.619
+margin_left = 746.032
+margin_top = -358.73
+margin_right = 819.032
+margin_bottom = -285.73
 texture_normal = ExtResource( 29 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -353,6 +349,7 @@ script = ExtResource( 16 )
 
 [node name="PageFlip" type="AudioStreamPlayer" parent="Album"]
 stream = ExtResource( 24 )
+pitch_scale = 0.9
 bus = "Effects"
 
 [node name="AlbumClose" type="AudioStreamPlayer" parent="Album"]

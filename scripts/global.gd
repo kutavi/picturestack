@@ -4,7 +4,6 @@ var reached_level = 1
 var current_level = 1
 
 var has_loaded = false
-var music_enabled = 1
 var sound_enabled = 1
 
 const BOARD_PART = "b"
