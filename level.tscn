@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://assets/placeholder.png" type="Texture" id=1]
 [ext_resource path="res://scripts/game.gd" type="Script" id=2]
@@ -30,6 +30,15 @@
 [ext_resource path="res://assets/sounds/book_open.wav" type="AudioStream" id=28]
 [ext_resource path="res://assets/sound.webp" type="Texture" id=29]
 [ext_resource path="res://scripts/menu.gd" type="Script" id=30]
+[ext_resource path="res://assets/question.webp" type="Texture" id=31]
+[ext_resource path="res://assets/layer.webp" type="Texture" id=32]
+[ext_resource path="res://assets/revealHover.webp" type="Texture" id=33]
+[ext_resource path="res://assets/reveal.webp" type="Texture" id=34]
+[ext_resource path="res://scripts/hint.gd" type="Script" id=35]
+
+[sub_resource type="DynamicFont" id=9]
+size = 48
+font_data = ExtResource( 3 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 42
@@ -54,6 +63,15 @@ font_data = SubResource( 4 )
 size = 36
 font_data = ExtResource( 3 )
 
+[sub_resource type="DynamicFont" id=7]
+size = 32
+outline_color = Color( 0.164706, 0.164706, 0.164706, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 42
+font_data = ExtResource( 3 )
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -70,6 +88,55 @@ position = Vector2( 513, 386 )
 scale = Vector2( 0.65, 0.65 )
 texture = ExtResource( 7 )
 
+[node name="Hint" type="Sprite" parent="."]
+visible = false
+position = Vector2( 513, 383 )
+z_index = 1
+texture = ExtResource( 32 )
+script = ExtResource( 35 )
+
+[node name="Reveal" type="TextureButton" parent="Hint"]
+margin_left = -153.0
+margin_top = 254.0
+margin_right = 44.0
+margin_bottom = 318.0
+rect_scale = Vector2( 1.6, 1.6 )
+texture_normal = ExtResource( 34 )
+texture_hover = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FinalImage" type="Sprite" parent="Hint"]
+position = Vector2( 0, -29 )
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 11 )
+
+[node name="Sprite" type="Sprite" parent="Hint/FinalImage"]
+texture = ExtResource( 14 )
+
+[node name="Prompt" type="RichTextLabel" parent="Hint"]
+margin_left = -271.0
+margin_top = -353.0
+margin_right = 322.0
+margin_bottom = -270.0
+custom_fonts/normal_font = SubResource( 9 )
+text = "Reveal the final picture?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Close" type="TextureButton" parent="Hint"]
+margin_left = 424.0
+margin_top = -368.0
+margin_right = 488.0
+margin_bottom = -304.0
+texture_normal = ExtResource( 15 )
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Win" type="Sprite" parent="."]
 visible = false
 position = Vector2( 529, 380 )
@@ -85,16 +152,17 @@ scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 5 )
 
 [node name="Star" type="Sprite" parent="Win"]
-position = Vector2( 175, 122 )
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 156, 78 )
+rotation = -1.15192
+scale = Vector2( 0.7, 0.7 )
 z_index = 4096
 texture = ExtResource( 6 )
 
 [node name="NextLevel" type="TextureButton" parent="Win"]
-margin_left = -221.0
-margin_top = 156.0
-margin_right = -24.0
-margin_bottom = 220.0
+margin_left = -210.0
+margin_top = 158.0
+margin_right = -13.0
+margin_bottom = 222.0
 rect_rotation = 7.0
 rect_scale = Vector2( 1.4, 1.4 )
 texture_normal = ExtResource( 10 )
@@ -340,6 +408,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HintButton" type="TextureButton" parent="Menu"]
+margin_left = 744.444
+margin_top = -244.444
+margin_right = 808.444
+margin_bottom = -180.444
+texture_normal = ExtResource( 31 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Album" type="Sprite" parent="."]
 visible = false
 position = Vector2( 504, 377 )
@@ -526,11 +604,10 @@ __meta__ = {
 }
 
 [node name="Reset" type="TextureButton" parent="Album"]
-visible = false
-margin_left = 219.048
-margin_top = -50.7937
-margin_right = 416.048
-margin_bottom = 13.2063
+margin_left = 203.175
+margin_top = 174.603
+margin_right = 400.175
+margin_bottom = 238.603
 rect_scale = Vector2( 2, 2 )
 texture_normal = ExtResource( 18 )
 texture_hover = ExtResource( 19 )
@@ -549,6 +626,45 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Credits" type="Node2D" parent="Album"]
+
+[node name="Content" type="RichTextLabel" parent="Album/Credits"]
+modulate = Color( 0.25098, 0.25098, 0.25098, 1 )
+self_modulate = Color( 0.145098, 0.145098, 0.145098, 1 )
+margin_left = 151.0
+margin_top = -359.0
+margin_right = 640.0
+margin_bottom = 101.0
+custom_fonts/normal_font = SubResource( 7 )
+text = "                  Created by 
+         Alexandra Tseniklidou
+
+
+               Assets made by 
+          Freepik from flaticon
+
+
+  Sound effects from freesound
+        Book closing by Koops
+     Bonus points by Joao_Janz
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Album/Credits"]
+modulate = Color( 0.172549, 0.172549, 0.172549, 1 )
+self_modulate = Color( 0.54902, 0.54902, 0.54902, 1 )
+margin_left = 307.937
+margin_top = -461.905
+margin_right = 485.937
+margin_bottom = -399.905
+custom_fonts/normal_font = SubResource( 8 )
+text = "Credits"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
 margin_left = 340.0
 margin_top = 248.0
@@ -560,11 +676,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="pressed" from="Hint/Reveal" to="Hint" method="_on_Reveal_pressed"]
+[connection signal="pressed" from="Hint/Close" to="Hint" method="_on_Close_pressed"]
 [connection signal="pressed" from="Win/NextLevel" to="." method="_on_NextLevel_pressed"]
 [connection signal="pressed" from="Menu/MenuButton" to="Menu" method="_on_Album_pressed"]
 [connection signal="pressed" from="Menu/ReloadButton" to="Menu" method="_on_Reload_pressed"]
 [connection signal="pressed" from="Menu/MusicButton" to="Menu" method="_on_Music_pressed"]
 [connection signal="pressed" from="Menu/SoundButton" to="Menu" method="_on_Sound_pressed"]
+[connection signal="pressed" from="Menu/HintButton" to="Menu" method="_on_HintButton_pressed"]
 [connection signal="pressed" from="Album/PrevPage" to="Album" method="_on_PrevPage_pressed"]
 [connection signal="pressed" from="Album/NextPage" to="Album" method="_on_NextPage_pressed"]
 [connection signal="pressed" from="Album/Reset" to="Album" method="_on_Reset_pressed"]

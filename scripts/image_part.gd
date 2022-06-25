@@ -7,7 +7,8 @@ func _input_event(_viewport, event, _shape_idx):
 	and event.button_index == BUTTON_LEFT \
 	and event.is_pressed() \
 	and !get_node(Global.LEVEL_NODE).game_ended \
-	and !get_node(Global.ALBUM_NODE).is_visible():
+	and !get_node(Global.ALBUM_NODE).is_visible() \
+	and !get_node(Global.HINT_POPUP_NODE).is_visible():
 		self._place_image()
 		get_node(Global.LEVEL_NODE).check_winning()
 

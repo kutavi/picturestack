@@ -19,6 +19,7 @@ func _ready():
 	else:
 		get_node(Global.BOARD_NODE).hide()
 		get_node(Global.MENU_NODE).get_node("ReloadButton").hide()
+		get_node(Global.MENU_NODE).get_node("HintButton").hide()
 		get_node(Global.VICTORY_NODE).show()
 	
 	_level_setup()
@@ -42,18 +43,19 @@ func check_winning():
 				if item_placement > item_that_should_be_after:
 					won = false
 	if won:
-		game_ended = true		
+		game_ended = true
 		if (Global.current_level >= Global.reached_level):
 			Global.reached_level = Global.current_level + 1
 			save()
 		get_node(Global.WIN_SOUND_NODE).play()
 		# place picture into the winning frame
 		get_node(Global.WINNING_POPUP_NODE).show()
+		get_node(Global.MENU_NODE).get_node("HintButton").hide()
 		for n in range (1, len(images) + 1):
 			var node = board.get_node(Global.BOARD_PART + String(n))
 			node.set_scale(FRAME_SCALE)
 			node.position.y = node.position.y - 80
-			node.position.x = node.position.x - 70
+			node.position.x = node.position.x - 40
 			node.set_rotation(0.124)
 
 
@@ -61,6 +63,8 @@ func _ui_setup():
 	get_node(Global.WINNING_POPUP_NODE).hide()
 	get_node(Global.BOARD_NODE).show()
 	get_node(Global.IMAGE_PARTS_NODE).show()
+	get_node(Global.MENU_NODE).show()
+	get_node(Global.HINT_POPUP_NODE).hide()
 	get_node(Global.ALBUM_NODE).hide()
 	get_node(Global.VICTORY_NODE).hide()
 	if (!Global.sound_enabled):

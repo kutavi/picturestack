@@ -20,8 +20,10 @@ _global_script_class_icons={
 
 [application]
 
-config/name="picturestack"
+config/name="Picturestack"
+config/description="Stack images in the right order to create a picture"
 run/main_scene="res://level.tscn"
+config/icon="res://icon.png"
 
 [autoload]
 

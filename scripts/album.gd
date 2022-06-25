@@ -23,6 +23,7 @@ func _handle_page_change():
 	get_node("NextPage").show()
 	get_node("PrevPage").show()
 	get_node("Reset").hide()
+	get_node("Credits").hide()
 	if (page == 0):
 		get_node("PrevPage").hide()
 	if (page == Global.total_levels / levels_per_page):
@@ -51,6 +52,7 @@ func _handle_page_change():
 		else:
 			level_select.hide()
 			get_node("Reset").show()
+			get_node("Credits").show()
 
 
 func open(): 
@@ -100,8 +102,7 @@ func _on_Close_pressed():
 
 func _on_Reset_pressed():
 	get_node(Global.MENU_SOUND_NODE).play()
-	var confirmation = get_node(Global.RESET_CONFIRM_NODE)
-	confirmation.popup()
+	get_node(Global.RESET_CONFIRM_NODE).popup()
 
 
 func _on_Reset_confirm():
@@ -110,3 +111,4 @@ func _on_Reset_confirm():
 	get_node(Global.LEVEL_NODE).save()
 	_close()
 	get_tree().reload_current_scene()
+
