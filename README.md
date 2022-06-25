@@ -13,9 +13,13 @@ Play it on [itch.io](https://ffviikh.itch.io/picturestack)
 - press play button in the editor to run
 
 ## Project structure
-- `assets/` - folder with all the game assets
+- `assets/` - folder with all the game assets (graphics, fonts, sounds)
 - `scripts/` - folder with all the project's scripts written in GDScript
 - `docs/` - folder of the exported project that loads in Github pages
+
+## Exporting for HTML5
+- place the godot executable to the root folder and rename to godot.exe (alternatively open the deploy.sh script and change the ~/godot.exe line with the path you have godot exeat)
+- run `deploy.sh` script and select the web platform you are exporting to. This will export the project and prepare the final zip to be uploader to that platform
 
 ## Adding a new level
 To add a new level in the game follow this process:
