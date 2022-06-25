@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://assets/placeholder.png" type="Texture" id=1]
 [ext_resource path="res://scripts/game.gd" type="Script" id=2]
@@ -25,7 +25,7 @@
 [ext_resource path="res://assets/sounds/pop.tres" type="AudioStream" id=23]
 [ext_resource path="res://assets/sounds/page_flip.wav" type="AudioStream" id=24]
 [ext_resource path="res://assets/sounds/select.wav" type="AudioStream" id=25]
-[ext_resource path="res://assets/sounds/win.wav" type="AudioStream" id=26]
+[ext_resource path="res://assets/sounds/success.wav" type="AudioStream" id=26]
 [ext_resource path="res://assets/sounds/book_close.wav" type="AudioStream" id=27]
 [ext_resource path="res://assets/sounds/book_open.wav" type="AudioStream" id=28]
 [ext_resource path="res://assets/sound.webp" type="Texture" id=29]
@@ -35,6 +35,8 @@
 [ext_resource path="res://assets/revealHover.webp" type="Texture" id=33]
 [ext_resource path="res://assets/reveal.webp" type="Texture" id=34]
 [ext_resource path="res://scripts/hint.gd" type="Script" id=35]
+[ext_resource path="res://assets/complete.wav" type="AudioStream" id=36]
+[ext_resource path="res://assets/fireworks.wav" type="AudioStream" id=37]
 
 [sub_resource type="DynamicFont" id=9]
 size = 48
@@ -144,6 +146,7 @@ z_index = 1
 
 [node name="LevelWin" type="AudioStreamPlayer" parent="Win"]
 stream = ExtResource( 26 )
+volume_db = -13.0
 bus = "Effects"
 
 [node name="Frame" type="Sprite" parent="Win"]
@@ -172,6 +175,7 @@ __meta__ = {
 }
 
 [node name="Board" type="Sprite" parent="."]
+visible = false
 position = Vector2( 500, 398 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 8 )
@@ -224,6 +228,7 @@ __meta__ = {
 }
 
 [node name="ImageParts" type="Sprite" parent="."]
+visible = false
 position = Vector2( -16, 7 )
 
 [node name="P1" type="Area2D" parent="ImageParts"]
@@ -331,35 +336,45 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="Victory" type="Sprite" parent="."]
-visible = false
 z_as_relative = false
 script = ExtResource( 20 )
 
 [node name="congrats" type="RichTextLabel" parent="Victory"]
 self_modulate = Color( 0.152941, 0.152941, 0.152941, 1 )
+margin_left = 3.0
 margin_top = 182.0
-margin_right = 1026.0
+margin_right = 1029.0
 margin_bottom = 497.0
 custom_fonts/normal_font = SubResource( 5 )
-text = "               CONGRATS!
+text = "              CONGRATS!
 
-       You reached the end"
+      You reached the end"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="instructions" type="RichTextLabel" parent="Victory"]
 self_modulate = Color( 0.207843, 0.207843, 0.207843, 1 )
-margin_left = 104.0
-margin_top = 510.0
-margin_right = 994.0
-margin_bottom = 640.0
+margin_left = 9.0
+margin_top = 566.0
+margin_right = 1016.0
+margin_bottom = 696.0
 custom_fonts/normal_font = SubResource( 6 )
-text = "                open the album to replay a level 
-                            or reset the game"
+text = "                          open the album to replay a level 
+                                        or reset the game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CompleteGame" type="AudioStreamPlayer" parent="Victory"]
+stream = ExtResource( 36 )
+volume_db = -13.0
+bus = "Effects"
+
+[node name="Fireworks" type="AudioStreamPlayer" parent="Victory"]
+stream = ExtResource( 37 )
+volume_db = -13.0
+bus = "Effects"
 
 [node name="Menu" type="Node2D" parent="."]
 position = Vector2( 504, 377 )
@@ -604,10 +619,10 @@ __meta__ = {
 }
 
 [node name="Reset" type="TextureButton" parent="Album"]
-margin_left = 203.175
-margin_top = 174.603
-margin_right = 400.175
-margin_bottom = 238.603
+margin_left = 200.0
+margin_top = 317.46
+margin_right = 397.0
+margin_bottom = 381.46
 rect_scale = Vector2( 2, 2 )
 texture_normal = ExtResource( 18 )
 texture_hover = ExtResource( 19 )
@@ -631,22 +646,42 @@ __meta__ = {
 [node name="Content" type="RichTextLabel" parent="Album/Credits"]
 modulate = Color( 0.25098, 0.25098, 0.25098, 1 )
 self_modulate = Color( 0.145098, 0.145098, 0.145098, 1 )
-margin_left = 151.0
-margin_top = -359.0
-margin_right = 640.0
-margin_bottom = 101.0
+margin_left = 56.0
+margin_top = -381.0
+margin_right = 740.0
+margin_bottom = 267.0
 custom_fonts/normal_font = SubResource( 7 )
-text = "                  Created by 
-         Alexandra Tseniklidou
+text = "                              Created by 
+                   Alexandra Tseniklidou
 
+              Assets from flaticon made by 
+                                 Freepik 
+				          pongsakornRed
+		                         Rashad
+		                          shmai
+		                Andrean Prabowo
+		                      kerismaker
+		                     Payungkead
+			     	   Peerapak Takpho
+		           Creative Stall Premium
+		                    Pixel perfect
+		                    DinosoftLabs
+		                      Good Ware
+		                      Vlad Szirka
+		                        juicy_fish
+		                     Smashicons
+		               Dimitry Miroliubov
+		          Maxim Basinski Premium
+		               BZZRINCANTATION
+		                      Roundicons
+		                       max.icons
+		                     BomSymbols
 
-               Assets made by 
-          Freepik from flaticon
-
-
-  Sound effects from freesound
-        Book closing by Koops
-     Bonus points by Joao_Janz
+              Sound effects from freesound
+                      Book closing by Koops
+                     Pop by SunnySideSound
+         Level up by shinephoenixstormcrow
+	                  Success by rhodesmas
 "
 __meta__ = {
 "_edit_use_anchors_": false

@@ -21,6 +21,7 @@ func _ready():
 		get_node(Global.MENU_NODE).get_node("ReloadButton").hide()
 		get_node(Global.MENU_NODE).get_node("HintButton").hide()
 		get_node(Global.VICTORY_NODE).show()
+		get_node(Global.VICTORY_NODE).get_node("CompleteGame").play()
 	
 	_level_setup()
 		
@@ -213,11 +214,12 @@ func _level_select():
 				images.append(preload("res://assets/level_parts/cars.webp"))
 				images.append(preload("res://assets/level_parts/trees.webp"))
 				images.append(preload("res://assets/level_parts/ground.webp"))
+				images.append(preload("res://assets/level_parts/bird.webp"))
 				images.append(preload("res://assets/level_parts/bridge.webp"))
 				images.append(preload("res://assets/level_parts/ducks.webp"))
 				images.append(preload("res://assets/level_parts/mountains.webp"))
 				images.append(preload("res://assets/level_parts/river.webp"))
-				winning_order = [[4], [1], [7], null, [4], [3], [1, 5]]
+				winning_order = [[5], [1], [8], null, [4], [5], [3], [1, 6]]
 			"crown":
 				images.append(preload("res://assets/level_parts/jewels.webp"))
 				images.append(preload("res://assets/level_parts/lolipops.webp"))
