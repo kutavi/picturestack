@@ -1,33 +1,36 @@
 #!/usr/bin/env bash
+prepareExport () {
+    echo "Exporting for $1..."
+    cp -f platforms/$1/platform.gd godot/scripts/platform.gd
+    cp -f platforms/$1/override.cfg godot/override.cfg
+    ~/godot.exe --path ./godot/ --export "HTML5"
+}
+
+prepareFile () {
+    echo "Creating final zip..."
+    rm -rf picturestack_$1.zip
+    powershell "Compress-Archive docs/* picturestack_$1.zip"
+}
+
 PS3='Deploy for which platform? Enter a number: '
-options=("default" "cmg")
+options=("default" "cmg" "all")
 select opt in "${options[@]}"
 do
     case $opt in
-        "default")
-            echo "Exporting for $opt..."
-            cp -f platforms/$opt/platform.gd godot/scripts/platform.gd
-            cp -f platforms/$opt/override.cfg godot/override.cfg
-            ~/godot.exe --path ./godot/ --export "HTML5"
+        "all"|"default")
+            prepareExport "default"
             rm -rf docs/splash.png
-            break
-            ;;
-        "cmg")
-            echo "Exporting for $opt..."
-            cp -f platforms/$opt/platform.gd godot/scripts/platform.gd
-            cp -f platforms/$opt/override.cfg godot/override.cfg
-            ~/godot.exe --path ./godot/ --export "HTML5"
+            prepareFile "web"
+            ;;&
+        "all"|"cmg")
+            prepareExport "cmg"
             echo "Copying files to export folder..."
-            cp -f platforms/$opt/index.html docs/index.html
-            cp -f platforms/$opt/splash.png docs/splash.png
-            break
-            ;;
-        *) echo "invalid option $REPLY";;
+            cp -f platforms/cmg/index.html docs/index.html
+            cp -f platforms/cmg/splash.png docs/splash.png
+            prepareFile "cmg"
+            ;;&
+        *) echo "Exiting..." break;;
     esac
 done
-
-echo "Creating final zip..."
-rm -rf picturestack_$opt.zip
-powershell "Compress-Archive docs/* picturestack_$opt.zip"
 
 echo "Done."

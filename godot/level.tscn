@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://assets/placeholder.png" type="Texture" id=1]
 [ext_resource path="res://scripts/game.gd" type="Script" id=2]
@@ -35,8 +35,7 @@
 [ext_resource path="res://assets/revealHover.webp" type="Texture" id=33]
 [ext_resource path="res://assets/reveal.webp" type="Texture" id=34]
 [ext_resource path="res://scripts/hint.gd" type="Script" id=35]
-[ext_resource path="res://assets/complete.wav" type="AudioStream" id=36]
-[ext_resource path="res://assets/fireworks.wav" type="AudioStream" id=37]
+[ext_resource path="res://assets/sounds/complete.wav" type="AudioStream" id=36]
 [ext_resource path="res://scripts/tracking.gd" type="Script" id=38]
 
 [sub_resource type="DynamicFont" id=9]
@@ -375,11 +374,6 @@ stream = ExtResource( 36 )
 volume_db = -13.0
 bus = "Effects"
 
-[node name="Fireworks" type="AudioStreamPlayer" parent="Victory"]
-stream = ExtResource( 37 )
-volume_db = -13.0
-bus = "Effects"
-
 [node name="Menu" type="Node2D" parent="."]
 position = Vector2( 504, 377 )
 scale = Vector2( 0.63, 0.63 )
@@ -438,7 +432,6 @@ __meta__ = {
 }
 
 [node name="Album" type="Sprite" parent="."]
-visible = false
 position = Vector2( 504, 377 )
 scale = Vector2( 0.63, 0.63 )
 texture = ExtResource( 12 )
@@ -655,37 +648,37 @@ margin_top = -381.0
 margin_right = 740.0
 margin_bottom = 267.0
 custom_fonts/normal_font = SubResource( 7 )
-text = "                              Created by 
-                   Alexandra Tseniklidou
+text = "             Created by 
+                        Alexandra Tseniklidou
 
               Assets from flaticon made by 
-                                 Freepik 
-				          pongsakornRed
-		                         Rashad
-		                          shmai
-		                Andrean Prabowo
-		                      kerismaker
-		                     Payungkead
-			     	   Peerapak Takpho
-		           Creative Stall Premium
-		                    Pixel perfect
-		                    DinosoftLabs
-		                      Good Ware
-		                      Vlad Szirka
-		                        juicy_fish
-		                     Smashicons
-		               Dimitry Miroliubov
-		          Maxim Basinski Premium
-		               BZZRINCANTATION
-		                      Roundicons
-		                       max.icons
-		                     BomSymbols
+						Andrean Prabowo
+						BomSymbols
+						BZZRINCANTATION
+						Creative Stall Premium
+						Dimitry Miroliubov
+						DinosoftLabs
+						Freepik
+						Good Ware
+						juicy_fish
+						kerismaker
+						max.icons
+						Maxim Basinski Premium
+						 Payungkead
+						Peerapak Takpho 
+						Pixel perfect
+						pongsakornRed
+						Rashad
+						Roundicons
+						shmai
+						Smashicons
+						Vlad Szirka
 
-              Sound effects from freesound
-                      Book closing by Koops
-                     Pop by SunnySideSound
-         Level up by shinephoenixstormcrow
-	                  Success by rhodesmas
+               Sound effects from freesound
+						Book closing by Koops
+						Level up by rhodesmas
+						Success by rhodesmas
+						Pop by SunnySideSound
 "
 __meta__ = {
 "_edit_use_anchors_": false
