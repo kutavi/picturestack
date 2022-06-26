@@ -3,6 +3,10 @@ prepareExport () {
     echo "Exporting for $1..."
     cp -f platforms/$1/platform.gd godot/scripts/platform.gd
     cp -f platforms/$1/override.cfg godot/override.cfg
+    dir=docs/
+    mkdir -p $dir
+    filename=$dir/index.html
+    test -f $filename || touch $filename
     ~/godot.exe --path ./godot/ --export "HTML5"
 }
 
@@ -29,7 +33,10 @@ do
             cp -f platforms/cmg/splash.png docs/splash.png
             prepareFile "cmg"
             ;;&
-        *) echo "Exiting..." break;;
+        *) 
+            echo "Exiting..."
+            break
+            ;;
     esac
 done
 
