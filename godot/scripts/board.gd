@@ -41,7 +41,8 @@ func build_collisions_from_image(board_part):
 	var images = get_node(Global.IMAGE_PARTS_NODE)
 	var image = images.get_node(Global.IMAGE_PART + which_one_to_handle).get_node("Sprite")
 	bitmap.create_from_image_alpha(image.texture.get_data())
-
+	# DEBUG:
+	bitmap.get_data().save_png("res://screenshots/debug" + get_parent().name + ".png")
 	# This will generate polygons for the given coordinate rectangle within the bitmap
 	var polygons = bitmap.opaque_to_polygons(Rect2(Vector2(0,0), bitmap.get_size()))
 
