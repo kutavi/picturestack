@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/music.webp-0aba3cf47b4ee5d5d8c66d9a5e651fe9.stex"
+path="res://.import/stick.webp-53a8027db227c2493d8012d860b3a18b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/music.webp"
-dest_files=[ "res://.import/music.webp-0aba3cf47b4ee5d5d8c66d9a5e651fe9.stex" ]
+source_file="res://assets/level_parts/stick.webp"
+dest_files=[ "res://.import/stick.webp-53a8027db227c2493d8012d860b3a18b.stex" ]
 
 [params]
 

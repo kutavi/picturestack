@@ -179,11 +179,12 @@ func _level_select():
 				images.append(preload("res://assets/level_parts/bowl.webp"))
 				images.append(preload("res://assets/level_parts/curtains.webp"))
 				images.append(preload("res://assets/level_parts/window.webp"))
-				images.append(preload("res://assets/level_parts/cupboard.webp"))
+				images.append(preload("res://assets/level_parts/table3.webp"))
 				images.append(preload("res://assets/level_parts/fruits.webp"))
 				images.append(preload("res://assets/level_parts/view.webp"))
+				images.append(preload("res://assets/level_parts/chairs.webp"))
 				images.append(preload("res://assets/level_parts/wall.webp"))
-				winning_order = [null, [4], [2, 5], null, [1], [3], [6]]
+				winning_order = [null, [4], [2, 5], null, [1], [3], [4], [6]]
 			"board":
 				images.append(preload("res://assets/level_parts/magnets.webp"))
 				images.append(preload("res://assets/level_parts/magneticboard.webp"))
@@ -228,6 +229,57 @@ func _level_select():
 				images.append(preload("res://assets/level_parts/crownhead.webp"))
 				images.append(preload("res://assets/level_parts/crownback.webp"))
 				winning_order = [null, [3], [1], [3], [3], [4, 5]]
+			"nest":
+				images.append(preload("res://assets/level_parts/branch.webp"))
+				images.append(preload("res://assets/level_parts/houses.webp"))
+				images.append(preload("res://assets/level_parts/egg_top.webp"))
+				images.append(preload("res://assets/level_parts/eggs.webp"))
+				images.append(preload("res://assets/level_parts/nest.webp"))
+				images.append(preload("res://assets/level_parts/chick.webp"))
+				winning_order = [[5], [1], null, [5], null, [4, 3]]
+			"icecream":
+				images.append(preload("res://assets/level_parts/ball2.webp"))
+				images.append(preload("res://assets/level_parts/ball1.webp"))
+				images.append(preload("res://assets/level_parts/caprise.webp"))
+				images.append(preload("res://assets/level_parts/ball3.webp"))
+				images.append(preload("res://assets/level_parts/cone.webp"))
+				images.append(preload("res://assets/level_parts/sprinkles.webp"))
+				winning_order = [[2], [6], [4], [1], [2], null]
+			"carousel":
+				images.append(preload("res://assets/level_parts/horses2.webp"))
+				images.append(preload("res://assets/level_parts/roof.webp"))
+				images.append(preload("res://assets/level_parts/columns.webp"))
+				images.append(preload("res://assets/level_parts/base2.webp"))
+				images.append(preload("res://assets/level_parts/pole.webp"))
+				images.append(preload("res://assets/level_parts/horses1.webp"))
+				winning_order = [[5], null, [1, 2, 4], null, [5, 2, 4], null]
+			"fireplace":
+				images.append(preload("res://assets/level_parts/candles.webp"))
+				images.append(preload("res://assets/level_parts/painting.webp"))
+				images.append(preload("res://assets/level_parts/place.webp"))
+				images.append(preload("res://assets/level_parts/fire.webp"))
+				images.append(preload("res://assets/level_parts/fireplace.webp"))
+				images.append(preload("res://assets/level_parts/wood.webp"))
+				images.append(preload("res://assets/level_parts/candelabra.webp"))
+				winning_order = [[7], [1], [6], null, [3, 7], [4], null]
+			"phone":
+				images.append(preload("res://assets/level_parts/dial_pad.webp"))
+				images.append(preload("res://assets/level_parts/cable.webp"))
+				images.append(preload("res://assets/level_parts/phone.webp"))
+				images.append(preload("res://assets/level_parts/phone_case.webp"))
+				images.append(preload("res://assets/level_parts/dial2.webp"))
+				images.append(preload("res://assets/level_parts/holder.webp"))
+				winning_order = [null, [3, 4], [6], [5], [1], [4]]
+			"umbrella":
+				images.append(preload("res://assets/level_parts/shelf.webp"))
+				images.append(preload("res://assets/level_parts/stick.webp"))
+				images.append(preload("res://assets/level_parts/books.webp"))
+				images.append(preload("res://assets/level_parts/wall2.webp"))
+				images.append(preload("res://assets/level_parts/drawings.webp"))
+				images.append(preload("res://assets/level_parts/umbrella.webp"))
+				images.append(preload("res://assets/level_parts/toy.webp"))
+				images.append(preload("res://assets/level_parts/teddy.webp"))
+				winning_order = [[3, 7], [6], [6], [1, 2, 5], [2], null, [6, 8], null]
 
 
 func _level_setup():
@@ -240,7 +292,7 @@ func _level_setup():
 		image_part.get_node(Global.IMAGE_SPRITE_NODE).set_scale(PART_SCALE)
 		image_part.set_script(load(Global.SCRIPTS_PATH + "image_part.gd"))
 		image_part.set_process_input(true) # we need to enable this since we load the script via code
-		board_part.set_texture(images[n - 1])
+		board_part.get_node("Sprite").set_texture(images[n - 1])
 		board_part.set_scale(BOARD_SCALE)
 		board_part.hide()
 	for n in range(len(images) + 1, 9): # clean up the rest unused places

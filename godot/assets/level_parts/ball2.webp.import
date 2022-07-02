@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cupboard.webp-524996ac73962bc994f5462e299f33be.stex"
+path="res://.import/ball2.webp-abbf811d6d2c3fea18a03c4486425571.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/level_parts/cupboard.webp"
-dest_files=[ "res://.import/cupboard.webp-524996ac73962bc994f5462e299f33be.stex" ]
+source_file="res://assets/level_parts/ball2.webp"
+dest_files=[ "res://.import/ball2.webp-abbf811d6d2c3fea18a03c4486425571.stex" ]
 
 [params]
 

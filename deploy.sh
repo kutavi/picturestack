@@ -22,15 +22,15 @@ select opt in "${options[@]}"
 do
     case $opt in
         "all"|"default")
+            rm -rf docs/index.png
             prepareExport "default"
-            rm -rf docs/splash.png
             prepareFile "web"
             ;;&
         "all"|"cmg")
             prepareExport "cmg"
             echo "Copying files to export folder..."
             cp -f platforms/cmg/index.html docs/index.html
-            cp -f platforms/cmg/splash.png docs/splash.png
+            cp -f platforms/cmg/splash.png docs/index.png
             prepareFile "cmg"
             ;;&
         *) 
