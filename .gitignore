@@ -1,7 +1,6 @@
 # Godot-specific ignores
 godot/.import/
 godot/override.cfg
-godot/platform.gd
 *.zip
 docs/
 # Imported translations (automatically generated from CSV files)

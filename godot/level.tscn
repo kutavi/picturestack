@@ -20,7 +20,7 @@
 [ext_resource path="res://assets/reset.webp" type="Texture" id=18]
 [ext_resource path="res://assets/reset_hover.webp" type="Texture" id=19]
 [ext_resource path="res://scripts/confetti.gd" type="Script" id=20]
-[ext_resource path="res://assets/reload.webp" type="Texture" id=21]
+[ext_resource path="res://assets/reload.png" type="Texture" id=21]
 [ext_resource path="res://scripts/board.gd" type="Script" id=22]
 [ext_resource path="res://assets/sounds/pop.tres" type="AudioStream" id=23]
 [ext_resource path="res://assets/sounds/page_flip.wav" type="AudioStream" id=24]
@@ -189,12 +189,10 @@ collision_layer = 2
 script = ExtResource( 22 )
 
 [node name="Board" type="Sprite" parent="Board/Canvas"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Board/Canvas"]
 position = Vector2( 1.42859, 0 )
-scale = Vector2( 1, 1 )
 shape = SubResource( 10 )
 
 [node name="Rules" type="RichTextLabel" parent="Board"]
@@ -217,7 +215,6 @@ position = Vector2( 0, 10 )
 input_pickable = false
 
 [node name="Sprite" type="Sprite" parent="Board/b1"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 
 [node name="b2" type="Area2D" parent="Board"]
@@ -225,7 +222,6 @@ position = Vector2( 0, 10 )
 input_pickable = false
 
 [node name="Sprite" type="Sprite" parent="Board/b2"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 
 [node name="b3" type="Area2D" parent="Board"]
@@ -233,7 +229,6 @@ position = Vector2( 0, 10 )
 input_pickable = false
 
 [node name="Sprite" type="Sprite" parent="Board/b3"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 
 [node name="b4" type="Area2D" parent="Board"]
@@ -241,16 +236,13 @@ position = Vector2( 0, 10 )
 input_pickable = false
 
 [node name="Sprite" type="Sprite" parent="Board/b4"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 
 [node name="b5" type="Area2D" parent="Board"]
 position = Vector2( 0, 10 )
-scale = Vector2( 1, 1 )
 input_pickable = false
 
 [node name="Sprite" type="Sprite" parent="Board/b5"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 
 [node name="b6" type="Area2D" parent="Board"]
@@ -258,7 +250,6 @@ position = Vector2( 0, 10 )
 input_pickable = false
 
 [node name="Sprite" type="Sprite" parent="Board/b6"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 
 [node name="b7" type="Area2D" parent="Board"]
@@ -266,7 +257,6 @@ position = Vector2( 0, 10 )
 input_pickable = false
 
 [node name="Sprite" type="Sprite" parent="Board/b7"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 
 [node name="b8" type="Area2D" parent="Board"]
@@ -274,7 +264,6 @@ position = Vector2( 0, 10 )
 input_pickable = false
 
 [node name="Sprite" type="Sprite" parent="Board/b8"]
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 
 [node name="ImageParts" type="Sprite" parent="."]
@@ -438,20 +427,20 @@ __meta__ = {
 }
 
 [node name="ReloadButton" type="TextureButton" parent="Menu"]
-margin_left = 741.27
-margin_top = -452.381
-margin_right = 805.27
-margin_bottom = -388.381
+margin_left = 744.444
+margin_top = -461.905
+margin_right = 808.444
+margin_bottom = -397.905
 texture_normal = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="SoundButton" type="TextureButton" parent="Menu"]
-margin_left = 746.032
-margin_top = -358.73
-margin_right = 819.032
-margin_bottom = -285.73
+margin_left = 744.444
+margin_top = -366.667
+margin_right = 817.444
+margin_bottom = -293.667
 texture_normal = ExtResource( 29 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -459,15 +448,16 @@ __meta__ = {
 
 [node name="HintButton" type="TextureButton" parent="Menu"]
 margin_left = 744.444
-margin_top = -244.444
+margin_top = -260.317
 margin_right = 808.444
-margin_bottom = -180.444
+margin_bottom = -196.317
 texture_normal = ExtResource( 31 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Album" type="Sprite" parent="."]
+visible = false
 position = Vector2( 504, 377 )
 scale = Vector2( 0.63, 0.63 )
 texture = ExtResource( 12 )
@@ -742,6 +732,7 @@ margin_left = 340.0
 margin_top = 248.0
 margin_right = 676.0
 margin_bottom = 318.0
+rect_min_size = Vector2( 400, 140 )
 window_title = "Restart game?"
 dialog_text = "Are you sure you want to delete all your progress?"
 __meta__ = {
